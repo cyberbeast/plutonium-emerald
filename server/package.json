@@ -1,0 +1,9 @@
+{
+  "name": "plutonium-emerald-server",
+  "version": "1.0.0",
+  "description": "plutonium prototype server",
+  "author": "cyberbeast",
+  "dependencies": {
+    "express": "^4.14.0"
+  }
+}
