@@ -1,11 +1,5 @@
-/**
- * @license
- * Copyright Google Inc. All Rights Reserved.
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://angular.io/license
- */
 import * as chars from './chars';
+import { ListWrapper } from './facade/collection';
 import { NumberWrapper, StringWrapper, isBlank, isPresent } from './facade/lang';
 import { HtmlTagContentType, NAMED_ENTITIES, getHtmlTagDefinition } from './html_tags';
 import { DEFAULT_INTERPOLATION_CONFIG } from './interpolation_config';
@@ -82,7 +76,6 @@ class _HtmlTokenizer {
         this._line = 0;
         this._column = -1;
         this._expansionCaseStack = [];
-        this._inInterpolation = false;
         this.tokens = [];
         this.errors = [];
         this._input = file.content;
@@ -226,12 +219,8 @@ class _HtmlTokenizer {
         }
     }
     _attemptStr(chars) {
-        const len = chars.length;
-        if (this._index + len > this._length) {
-            return false;
-        }
         const initialPosition = this._savePosition();
-        for (var i = 0; i < len; i++) {
+        for (var i = 0; i < chars.length; i++) {
             if (!this._attemptCharCode(StringWrapper.charCodeAt(chars, i))) {
                 // If attempting to parse the string fails, we want to reset the parser
                 // to where it was before the attempt
@@ -330,7 +319,6 @@ class _HtmlTokenizer {
                 break;
             }
             if (this._index > tagCloseStart.offset) {
-                // add the characters consumed by the previous if statement to the output
                 parts.push(this._input.substring(tagCloseStart.offset, this._index));
             }
             while (this._peek !== firstCharOfEnd) {
@@ -384,7 +372,7 @@ class _HtmlTokenizer {
         let savedPos = this._savePosition();
         let lowercaseTagName;
         try {
-            if (!chars.isAsciiLetter(this._peek)) {
+            if (!isAsciiLetter(this._peek)) {
                 throw this._createError(unexpectedCharacterErrorMsg(this._peek), this._getSpan());
             }
             var nameStart = this._index;
@@ -525,34 +513,43 @@ class _HtmlTokenizer {
         var start = this._getLocation();
         this._beginToken(HtmlTokenType.TEXT, start);
         var parts = [];
+        let interpolation = false;
         do {
+            const savedPos = this._savePosition();
+            // _attemptStr advances the position when it is true.
+            // To push interpolation symbols, we have to reset it.
             if (this._attemptStr(this.interpolationConfig.start)) {
-                parts.push(this.interpolationConfig.start);
-                this._inInterpolation = true;
+                this._restorePosition(savedPos);
+                for (let i = 0; i < this.interpolationConfig.start.length; i++) {
+                    parts.push(this._readChar(true));
+                }
+                interpolation = true;
             }
-            else if (this._attemptStr(this.interpolationConfig.end) && this._inInterpolation) {
-                parts.push(this.interpolationConfig.end);
-                this._inInterpolation = false;
+            else if (this._attemptStr(this.interpolationConfig.end) && interpolation) {
+                this._restorePosition(savedPos);
+                for (let i = 0; i < this.interpolationConfig.end.length; i++) {
+                    parts.push(this._readChar(true));
+                }
+                interpolation = false;
             }
             else {
+                this._restorePosition(savedPos);
                 parts.push(this._readChar(true));
             }
-        } while (!this._isTextEnd());
+        } while (!this._isTextEnd(interpolation));
         this._endToken([this._processCarriageReturns(parts.join(''))]);
     }
-    _isTextEnd() {
-        if (this._peek === chars.$LT || this._peek === chars.$EOF) {
+    _isTextEnd(interpolation) {
+        if (this._peek === chars.$LT || this._peek === chars.$EOF)
             return true;
-        }
         if (this.tokenizeExpansionForms) {
-            if (isExpansionFormStart(this._input, this._index, this.interpolationConfig.start)) {
-                // start of an expansion form
+            const savedPos = this._savePosition();
+            if (isExpansionFormStart(this._input, this._index, this.interpolationConfig.start))
                 return true;
-            }
-            if (this._peek === chars.$RBRACE && !this._inInterpolation && this._isInExpansionCase()) {
-                // end of and expansion case
+            this._restorePosition(savedPos);
+            if (this._peek === chars.$RBRACE && !interpolation &&
+                (this._isInExpansionCase() || this._isInExpansionForm()))
                 return true;
-            }
         }
         return false;
     }
@@ -572,7 +569,7 @@ class _HtmlTokenizer {
         let nbTokens = position[4];
         if (nbTokens < this.tokens.length) {
             // remove any extra tokens
-            this.tokens = this.tokens.slice(0, nbTokens);
+            this.tokens = ListWrapper.slice(this.tokens, 0, nbTokens);
         }
     }
     _isInExpansionCase() {
@@ -587,28 +584,40 @@ class _HtmlTokenizer {
     }
 }
 function isNotWhitespace(code) {
-    return !chars.isWhitespace(code) || code === chars.$EOF;
+    return !isWhitespace(code) || code === chars.$EOF;
+}
+function isWhitespace(code) {
+    return (code >= chars.$TAB && code <= chars.$SPACE) || (code === chars.$NBSP);
 }
 function isNameEnd(code) {
-    return chars.isWhitespace(code) || code === chars.$GT || code === chars.$SLASH ||
-        code === chars.$SQ || code === chars.$DQ || code === chars.$EQ;
+    return isWhitespace(code) || code === chars.$GT || code === chars.$SLASH || code === chars.$SQ ||
+        code === chars.$DQ || code === chars.$EQ;
 }
 function isPrefixEnd(code) {
     return (code < chars.$a || chars.$z < code) && (code < chars.$A || chars.$Z < code) &&
         (code < chars.$0 || code > chars.$9);
 }
 function isDigitEntityEnd(code) {
-    return code == chars.$SEMICOLON || code == chars.$EOF || !chars.isAsciiHexDigit(code);
+    return code == chars.$SEMICOLON || code == chars.$EOF || !isAsciiHexDigit(code);
 }
 function isNamedEntityEnd(code) {
-    return code == chars.$SEMICOLON || code == chars.$EOF || !chars.isAsciiLetter(code);
+    return code == chars.$SEMICOLON || code == chars.$EOF || !isAsciiLetter(code);
 }
 function isExpansionFormStart(input, offset, interpolationStart) {
-    return input.charCodeAt(offset) == chars.$LBRACE &&
-        input.indexOf(interpolationStart, offset) != offset;
+    const substr = input.substring(offset);
+    return StringWrapper.charCodeAt(substr, 0) === chars.$LBRACE &&
+        StringWrapper.charCodeAt(substr, 1) !== chars.$LBRACE &&
+        !substr.startsWith(interpolationStart);
 }
 function isExpansionCaseStart(peek) {
-    return peek === chars.$EQ || chars.isAsciiLetter(peek);
+    return peek === chars.$EQ || isAsciiLetter(peek);
+}
+function isAsciiLetter(code) {
+    return code >= chars.$a && code <= chars.$z || code >= chars.$A && code <= chars.$Z;
+}
+function isAsciiHexDigit(code) {
+    return code >= chars.$a && code <= chars.$f || code >= chars.$A && code <= chars.$F ||
+        code >= chars.$0 && code <= chars.$9;
 }
 function compareCharCodeCaseInsensitive(code1, code2) {
     return toUpperCaseCharCode(code1) == toUpperCaseCharCode(code2);

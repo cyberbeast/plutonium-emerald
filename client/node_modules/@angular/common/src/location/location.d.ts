@@ -46,7 +46,7 @@ export declare class Location {
     /**
      * Returns the normalized URL path.
      */
-    path(includeHash?: boolean): string;
+    path(): string;
     /**
      * Normalizes the given path and compares to the current normalized path.
      */

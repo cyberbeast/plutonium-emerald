@@ -2,44 +2,22 @@ import { SanitizationService, SecurityContext } from '../../core_private';
 export { SecurityContext };
 /**
  * Marker interface for a value that's safe to use in a particular context.
- *
- * @stable
  */
 export interface SafeValue {
 }
-/**
- * Marker interface for a value that's safe to use as HTML.
- *
- * @stable
- */
+/** Marker interface for a value that's safe to use as HTML. */
 export interface SafeHtml extends SafeValue {
 }
-/**
- * Marker interface for a value that's safe to use as style (CSS).
- *
- * @stable
- */
+/** Marker interface for a value that's safe to use as style (CSS). */
 export interface SafeStyle extends SafeValue {
 }
-/**
- * Marker interface for a value that's safe to use as JavaScript.
- *
- * @stable
- */
+/** Marker interface for a value that's safe to use as JavaScript. */
 export interface SafeScript extends SafeValue {
 }
-/**
- * Marker interface for a value that's safe to use as a URL linking to a document.
- *
- * @stable
- */
+/** Marker interface for a value that's safe to use as a URL linking to a document. */
 export interface SafeUrl extends SafeValue {
 }
-/**
- * Marker interface for a value that's safe to use as a URL to load executable code from.
- *
- * @stable
- */
+/** Marker interface for a value that's safe to use as a URL to load executable code from. */
 export interface SafeResourceUrl extends SafeValue {
 }
 /**
@@ -65,13 +43,6 @@ export interface SafeResourceUrl extends SafeValue {
  * It is not required (and not recommended) to bypass security if the value is safe, e.g. a URL that
  * does not start with a suspicious protocol, or an HTML snippet that does not contain dangerous
  * code. The sanitizer leaves safe values intact.
- *
- * @security Calling any of the `bypassSecurityTrust...` APIs disables Angular's built-in
- * sanitization for the value passed in. Carefully check and audit all values and code paths going
- * into this call. Make sure any user data is appropriately escaped for this security context.
- * For more detail, see the [Security Guide](http://g.co/ng/security).
- *
- * @stable
  */
 export declare abstract class DomSanitizationService implements SanitizationService {
     /**
@@ -88,38 +59,33 @@ export declare abstract class DomSanitizationService implements SanitizationServ
      * is unsafe (e.g. contains `<script>` tags) and the code should be executed. The sanitizer will
      * leave safe HTML intact, so in most situations this method should not be used.
      *
-     * **WARNING:** calling this method with untrusted user data exposes your application to XSS
-     * security risks!
+     * WARNING: calling this method with untrusted user data will cause severe security bugs!
      */
     abstract bypassSecurityTrustHtml(value: string): SafeHtml;
     /**
      * Bypass security and trust the given value to be safe style value (CSS).
      *
-     * **WARNING:** calling this method with untrusted user data exposes your application to XSS
-     * security risks!
+     * WARNING: calling this method with untrusted user data will cause severe security bugs!
      */
     abstract bypassSecurityTrustStyle(value: string): SafeStyle;
     /**
      * Bypass security and trust the given value to be safe JavaScript.
      *
-     * **WARNING:** calling this method with untrusted user data exposes your application to XSS
-     * security risks!
+     * WARNING: calling this method with untrusted user data will cause severe security bugs!
      */
     abstract bypassSecurityTrustScript(value: string): SafeScript;
     /**
      * Bypass security and trust the given value to be a safe style URL, i.e. a value that can be used
      * in hyperlinks or `<img src>`.
      *
-     * **WARNING:** calling this method with untrusted user data exposes your application to XSS
-     * security risks!
+     * WARNING: calling this method with untrusted user data will cause severe security bugs!
      */
     abstract bypassSecurityTrustUrl(value: string): SafeUrl;
     /**
      * Bypass security and trust the given value to be a safe resource URL, i.e. a location that may
      * be used to load executable code from, like `<script src>`, or `<iframe src>`.
      *
-     * **WARNING:** calling this method with untrusted user data exposes your application to XSS
-     * security risks!
+     * WARNING: calling this method with untrusted user data will cause severe security bugs!
      */
     abstract bypassSecurityTrustResourceUrl(value: string): SafeResourceUrl;
 }

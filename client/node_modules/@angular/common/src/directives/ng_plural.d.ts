@@ -1,12 +1,10 @@
-/**
- * @license
- * Copyright Google Inc. All Rights Reserved.
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://angular.io/license
- */
 import { AfterContentInit, QueryList, TemplateRef, ViewContainerRef } from '@angular/core';
-import { NgLocalization } from '../localization';
+/**
+ * @experimental
+ */
+export declare abstract class NgLocalization {
+    abstract getPluralCategory(value: any): string;
+}
 /**
  * `ngPlural` is an i18n directive that displays DOM sub-trees that match the switch expression
  * value, or failing that, DOM sub-trees that match the switch expression's pluralization category.
@@ -21,6 +19,9 @@ import { NgLocalization } from '../localization';
  *    - Otherwise, the view will be treated as a "category match", and will only display if exact
  * value matches aren't found and the value maps to its category using the `getPluralCategory`
  * function provided.
+ *
+ * If no matching views are found for a switch expression, inner elements marked
+ * `[ngPluralCase]="other"` will be displayed.
  *
  * ```typescript
  * class MyLocalization extends NgLocalization {

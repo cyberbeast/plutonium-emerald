@@ -1,16 +1,9 @@
-/**
- * @license
- * Copyright Google Inc. All Rights Reserved.
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://angular.io/license
- */
-import { createScope, detectWTF, endTimeRange, leave, startTimeRange } from './wtf_impl';
+import * as impl from './wtf_impl';
 // Change exports to const once https://github.com/angular/ts2dart/issues/150
 /**
  * True if WTF is enabled.
  */
-export var wtfEnabled = detectWTF();
+export var wtfEnabled = impl.detectWTF();
 function noopScope(arg0, arg1) {
     return null;
 }
@@ -44,7 +37,7 @@ function noopScope(arg0, arg1) {
  *
  * @experimental
  */
-export var wtfCreateScope = wtfEnabled ? createScope : (signature, flags) => noopScope;
+export var wtfCreateScope = wtfEnabled ? impl.createScope : (signature, flags) => noopScope;
 /**
  * Used to mark end of Scope.
  *
@@ -54,7 +47,7 @@ export var wtfCreateScope = wtfEnabled ? createScope : (signature, flags) => noo
  * Returns the `returnValue for easy chaining.
  * @experimental
  */
-export var wtfLeave = wtfEnabled ? leave : (s, r) => r;
+export var wtfLeave = wtfEnabled ? impl.leave : (s, r) => r;
 /**
  * Used to mark Async start. Async are similar to scope but they don't have to be strictly nested.
  * The return value is used in the call to [endAsync]. Async ranges only work if WTF has been
@@ -68,12 +61,12 @@ export var wtfLeave = wtfEnabled ? leave : (s, r) => r;
  *     }
  * @experimental
  */
-export var wtfStartTimeRange = wtfEnabled ? startTimeRange : (rangeType, action) => null;
+export var wtfStartTimeRange = wtfEnabled ? impl.startTimeRange : (rangeType, action) => null;
 /**
  * Ends a async time range operation.
  * [range] is the return value from [wtfStartTimeRange] Async ranges only work if WTF has been
  * enabled.
  * @experimental
  */
-export var wtfEndTimeRange = wtfEnabled ? endTimeRange : (r) => null;
+export var wtfEndTimeRange = wtfEnabled ? impl.endTimeRange : (r) => null;
 //# sourceMappingURL=profile.js.map

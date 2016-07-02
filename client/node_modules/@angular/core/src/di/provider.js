@@ -1,10 +1,3 @@
-/**
- * @license
- * Copyright Google Inc. All Rights Reserved.
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://angular.io/license
- */
 "use strict";
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
@@ -31,7 +24,7 @@ var lang_1 = require('../facade/lang');
  * @deprecated
  */
 var Provider = (function () {
-    function Provider(token, _a) {
+    function Provider(token /** TODO #9100 */, _a) {
         var useClass = _a.useClass, useValue = _a.useValue, useExisting = _a.useExisting, useFactory = _a.useFactory, deps = _a.deps, multi = _a.multi;
         this.token = token;
         this.useClass = useClass;
@@ -87,7 +80,7 @@ exports.Provider = Provider;
  */
 var Binding = (function (_super) {
     __extends(Binding, _super);
-    function Binding(token, _a) {
+    function Binding(token /** TODO #9100 */, _a) {
         var toClass = _a.toClass, toValue = _a.toValue, toAlias = _a.toAlias, toFactory = _a.toFactory, deps = _a.deps, multi = _a.multi;
         _super.call(this, token, {
             useClass: toClass,
@@ -145,7 +138,7 @@ exports.Binding = Binding;
  *
  * @deprecated
  */
-function bind(token) {
+function bind(token /** TODO #9100 */) {
     return new ProviderBuilder(token);
 }
 exports.bind = bind;
@@ -154,7 +147,7 @@ exports.bind = bind;
  * @deprecated
  */
 var ProviderBuilder = (function () {
-    function ProviderBuilder(token) {
+    function ProviderBuilder(token /** TODO #9100 */) {
         this.token = token;
     }
     /**
@@ -276,7 +269,7 @@ exports.ProviderBuilder = ProviderBuilder;
  * <!-- TODO: improve the docs -->
  * @deprecated
  */
-function provide(token, _a) {
+function provide(token /** TODO #9100 */, _a) {
     var useClass = _a.useClass, useValue = _a.useValue, useExisting = _a.useExisting, useFactory = _a.useFactory, deps = _a.deps, multi = _a.multi;
     return new Provider(token, {
         useClass: useClass,

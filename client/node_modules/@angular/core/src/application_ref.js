@@ -1,10 +1,3 @@
-/**
- * @license
- * Copyright Google Inc. All Rights Reserved.
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://angular.io/license
- */
 "use strict";
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
@@ -41,8 +34,7 @@ var _inPlatformCreate = false;
  * One important assertion this disables verifies that a change detection pass
  * does not result in additional changes to any bindings (also known as
  * unidirectional data flow).
- *
- * @experimental APIs related to application bootstrap are currently under review.
+ * @stable
  */
 function enableProdMode() {
     if (_runModeLocked) {
@@ -57,8 +49,6 @@ exports.enableProdMode = enableProdMode;
  * This can only be read after `lockRunMode` has been called.
  *
  * By default, this is true, unless a user calls `enableProdMode`.
- *
- * @experimental APIs related to application bootstrap are currently under review.
  */
 function isDevMode() {
     if (!_runModeLocked) {
@@ -71,8 +61,6 @@ exports.isDevMode = isDevMode;
  * Locks the run mode of Angular. After this has been called,
  * it can't be changed any more. I.e. `isDevMode()` will always
  * return the same value.
- *
- * @experimental APIs related to application bootstrap are currently under review.
  */
 function lockRunMode() {
     _runModeLocked = true;
@@ -81,8 +69,7 @@ exports.lockRunMode = lockRunMode;
 /**
  * Creates a platform.
  * Platforms have to be eagerly created via this function.
- *
- * @experimental APIs related to application bootstrap are currently under review.
+ * @experimental
  */
 function createPlatform(injector) {
     if (_inPlatformCreate) {
@@ -105,8 +92,7 @@ exports.createPlatform = createPlatform;
 /**
  * Checks that there currently is a platform
  * which contains the given token as a provider.
- *
- * @experimental APIs related to application bootstrap are currently under review.
+ * @experimental
  */
 function assertPlatform(requiredToken) {
     var platform = getPlatform();
@@ -121,8 +107,7 @@ function assertPlatform(requiredToken) {
 exports.assertPlatform = assertPlatform;
 /**
  * Dispose the existing platform.
- *
- * @experimental APIs related to application bootstrap are currently under review.
+ * @experimental
  */
 function disposePlatform() {
     if (lang_1.isPresent(_platform) && !_platform.disposed) {
@@ -132,8 +117,7 @@ function disposePlatform() {
 exports.disposePlatform = disposePlatform;
 /**
  * Returns the current platform.
- *
- * @experimental APIs related to application bootstrap are currently under review.
+ * @experimental
  */
 function getPlatform() {
     return lang_1.isPresent(_platform) && !_platform.disposed ? _platform : null;
@@ -142,8 +126,7 @@ exports.getPlatform = getPlatform;
 /**
  * Shortcut for ApplicationRef.bootstrap.
  * Requires a platform to be created first.
- *
- * @experimental APIs related to application bootstrap are currently under review.
+ * @experimental
  */
 function coreBootstrap(componentFactory, injector) {
     var appRef = injector.get(ApplicationRef);
@@ -154,8 +137,7 @@ exports.coreBootstrap = coreBootstrap;
  * Resolves the componentFactory for the given component,
  * waits for asynchronous initializers and bootstraps the component.
  * Requires a platform to be created first.
- *
- * @experimental APIs related to application bootstrap are currently under review.
+ * @experimental
  */
 function coreLoadAndBootstrap(componentType, injector) {
     var appRef = injector.get(ApplicationRef);
@@ -174,8 +156,7 @@ exports.coreLoadAndBootstrap = coreLoadAndBootstrap;
  *
  * A page's platform is initialized implicitly when {@link bootstrap}() is called, or
  * explicitly by calling {@link createPlatform}().
- *
- * @experimental APIs related to application bootstrap are currently under review.
+ * @stable
  */
 var PlatformRef = (function () {
     function PlatformRef() {
@@ -249,8 +230,7 @@ exports.PlatformRef_ = PlatformRef_;
  * A reference to an Angular application running on a page.
  *
  * For more about Angular applications, see the documentation for {@link bootstrap}.
- *
- * @experimental APIs related to application bootstrap are currently under review.
+ * @stable
  */
 var ApplicationRef = (function () {
     function ApplicationRef() {

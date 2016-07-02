@@ -1,10 +1,3 @@
-/**
- * @license
- * Copyright Google Inc. All Rights Reserved.
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://angular.io/license
- */
 "use strict";
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
@@ -40,8 +33,6 @@ var headers_1 = require('./headers');
  *
  * console.log('res.json():', res.json()); // Object {name: "Jeff"}
  * ```
- *
- * @experimental
  */
 var ResponseOptions = (function () {
     function ResponseOptions(_a) {

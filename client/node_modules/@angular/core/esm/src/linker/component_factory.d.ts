@@ -1,10 +1,3 @@
-/**
- * @license
- * Copyright Google Inc. All Rights Reserved.
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://angular.io/license
- */
 import { ChangeDetectorRef } from '../change_detection/change_detection';
 import { Injector } from '../di/injector';
 import { Type } from '../facade/lang';
@@ -66,9 +59,6 @@ export declare class ComponentRef_<C> extends ComponentRef<C> {
     destroy(): void;
     onDestroy(callback: Function): void;
 }
-/**
- * @stable
- */
 export declare class ComponentFactory<C> {
     selector: string;
     private _viewFactory;

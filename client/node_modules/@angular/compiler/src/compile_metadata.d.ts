@@ -1,10 +1,3 @@
-/**
- * @license
- * Copyright Google Inc. All Rights Reserved.
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://angular.io/license
- */
 import { ChangeDetectionStrategy, ViewEncapsulation } from '@angular/core';
 import { LifecycleHooks } from '../core_private';
 import { Type } from '../src/facade/lang';
@@ -299,25 +292,6 @@ export declare class CompileQueryMetadata {
     };
 }
 /**
- * Metadata about a stylesheet
- */
-export declare class CompileStylesheetMetadata {
-    moduleUrl: string;
-    styles: string[];
-    styleUrls: string[];
-    constructor({moduleUrl, styles, styleUrls}?: {
-        moduleUrl?: string;
-        styles?: string[];
-        styleUrls?: string[];
-    });
-    static fromJson(data: {
-        [key: string]: any;
-    }): CompileStylesheetMetadata;
-    toJson(): {
-        [key: string]: any;
-    };
-}
-/**
  * Metadata regarding compilation of a template.
  */
 export declare class CompileTemplateMetadata {
@@ -326,17 +300,15 @@ export declare class CompileTemplateMetadata {
     templateUrl: string;
     styles: string[];
     styleUrls: string[];
-    externalStylesheets: CompileStylesheetMetadata[];
     animations: CompileAnimationEntryMetadata[];
     ngContentSelectors: string[];
     interpolation: [string, string];
-    constructor({encapsulation, template, templateUrl, styles, styleUrls, externalStylesheets, animations, ngContentSelectors, interpolation}?: {
+    constructor({encapsulation, template, templateUrl, styles, styleUrls, animations, ngContentSelectors, interpolation}?: {
         encapsulation?: ViewEncapsulation;
         template?: string;
         templateUrl?: string;
         styles?: string[];
         styleUrls?: string[];
-        externalStylesheets?: CompileStylesheetMetadata[];
         ngContentSelectors?: string[];
         animations?: CompileAnimationEntryMetadata[];
         interpolation?: [string, string];
@@ -352,7 +324,7 @@ export declare class CompileTemplateMetadata {
  * Metadata regarding compilation of a directive.
  */
 export declare class CompileDirectiveMetadata implements CompileMetadataWithType {
-    static create({type, isComponent, selector, exportAs, changeDetection, inputs, outputs, host, lifecycleHooks, providers, viewProviders, queries, viewQueries, precompile, template}?: {
+    static create({type, isComponent, selector, exportAs, changeDetection, inputs, outputs, host, lifecycleHooks, providers, viewProviders, queries, viewQueries, template}?: {
         type?: CompileTypeMetadata;
         isComponent?: boolean;
         selector?: string;
@@ -368,7 +340,6 @@ export declare class CompileDirectiveMetadata implements CompileMetadataWithType
         viewProviders?: Array<CompileProviderMetadata | CompileTypeMetadata | CompileIdentifierMetadata | any[]>;
         queries?: CompileQueryMetadata[];
         viewQueries?: CompileQueryMetadata[];
-        precompile?: CompileTypeMetadata[];
         template?: CompileTemplateMetadata;
     }): CompileDirectiveMetadata;
     type: CompileTypeMetadata;
@@ -396,9 +367,8 @@ export declare class CompileDirectiveMetadata implements CompileMetadataWithType
     viewProviders: CompileProviderMetadata[];
     queries: CompileQueryMetadata[];
     viewQueries: CompileQueryMetadata[];
-    precompile: CompileTypeMetadata[];
     template: CompileTemplateMetadata;
-    constructor({type, isComponent, selector, exportAs, changeDetection, inputs, outputs, hostListeners, hostProperties, hostAttributes, lifecycleHooks, providers, viewProviders, queries, viewQueries, precompile, template}?: {
+    constructor({type, isComponent, selector, exportAs, changeDetection, inputs, outputs, hostListeners, hostProperties, hostAttributes, lifecycleHooks, providers, viewProviders, queries, viewQueries, template}?: {
         type?: CompileTypeMetadata;
         isComponent?: boolean;
         selector?: string;
@@ -424,7 +394,6 @@ export declare class CompileDirectiveMetadata implements CompileMetadataWithType
         viewProviders?: Array<CompileProviderMetadata | CompileTypeMetadata | CompileIdentifierMetadata | any[]>;
         queries?: CompileQueryMetadata[];
         viewQueries?: CompileQueryMetadata[];
-        precompile?: CompileTypeMetadata[];
         template?: CompileTemplateMetadata;
     });
     identifier: CompileIdentifierMetadata;

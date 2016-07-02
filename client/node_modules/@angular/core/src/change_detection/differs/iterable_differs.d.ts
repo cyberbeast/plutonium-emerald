@@ -1,10 +1,3 @@
-/**
- * @license
- * Copyright Google Inc. All Rights Reserved.
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://angular.io/license
- */
 import { Provider } from '../../di';
 import { ChangeDetectorRef } from '../change_detector_ref';
 /**
@@ -18,18 +11,14 @@ export interface IterableDiffer {
     onDestroy(): any;
 }
 /**
- * An optional function passed into {@link NgFor} that defines how to track
- * items in an iterable (e.g. by index or id)
- *
- * @stable
+  * An optional function passed into {@link NgFor} that defines how to track
+  * items in an iterable (e.g. by index or id)
  */
 export interface TrackByFn {
     (index: number, item: any): any;
 }
 /**
  * Provides a factory for {@link IterableDiffer}.
- *
- * @stable
  */
 export interface IterableDifferFactory {
     supports(objects: any): boolean;

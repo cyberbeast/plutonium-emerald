@@ -1,16 +1,7 @@
-/**
- * @license
- * Copyright Google Inc. All Rights Reserved.
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://angular.io/license
- */
 import { Provider } from '../../di';
 import { ChangeDetectorRef } from '../change_detector_ref';
 /**
  * A differ that tracks changes made to an object over time.
- *
- * @stable
  */
 export interface KeyValueDiffer {
     diff(object: any): any;
@@ -18,8 +9,6 @@ export interface KeyValueDiffer {
 }
 /**
  * Provides a factory for {@link KeyValueDiffer}.
- *
- * @stable
  */
 export interface KeyValueDifferFactory {
     supports(objects: any): boolean;

@@ -1,10 +1,3 @@
-/**
- * @license
- * Copyright Google Inc. All Rights Reserved.
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://angular.io/license
- */
 import { Provider } from './index';
 import { ANY_STATE as ANY_STATE_, DEFAULT_STATE as DEFAULT_STATE_, EMPTY_STATE as EMPTY_STATE_, FILL_STYLE_FLAG as FILL_STYLE_FLAG_ } from './src/animation/animation_constants';
 import { AnimationDriver as AnimationDriver_, NoOpAnimationDriver as NoOpAnimationDriver_ } from './src/animation/animation_driver';
@@ -20,7 +13,6 @@ import * as console from './src/console';
 import * as debug from './src/debug/debug_renderer';
 import * as provider_util from './src/di/provider_util';
 import * as reflective_provider from './src/di/reflective_provider';
-import * as component_factory_resolver from './src/linker/component_factory_resolver';
 import * as component_resolver from './src/linker/component_resolver';
 import * as debug_context from './src/linker/debug_context';
 import * as element from './src/linker/element';
@@ -40,8 +32,8 @@ import * as security from './src/security';
 import * as decorators from './src/util/decorators';
 export declare namespace __core_private_types__ {
     var isDefaultChangeDetectionStrategy: typeof constants.isDefaultChangeDetectionStrategy;
-    type ChangeDetectorStatus = constants.ChangeDetectorStatus;
-    var ChangeDetectorStatus: typeof constants.ChangeDetectorStatus;
+    type ChangeDetectorState = constants.ChangeDetectorState;
+    var ChangeDetectorState: typeof constants.ChangeDetectorState;
     var CHANGE_DETECTION_STRATEGY_VALUES: typeof constants.CHANGE_DETECTION_STRATEGY_VALUES;
     var constructDependencies: typeof reflective_provider.constructDependencies;
     type LifecycleHooks = lifecycle_hooks.LifecycleHooks;
@@ -50,7 +42,6 @@ export declare namespace __core_private_types__ {
     type ReflectorReader = reflector_reader.ReflectorReader;
     var ReflectorReader: typeof reflector_reader.ReflectorReader;
     var ReflectorComponentResolver: typeof component_resolver.ReflectorComponentResolver;
-    var CodegenComponentFactoryResolver: typeof component_factory_resolver.CodegenComponentFactoryResolver;
     type AppElement = element.AppElement;
     var AppElement: typeof element.AppElement;
     var AppView: typeof view.AppView;
@@ -71,10 +62,10 @@ export declare namespace __core_private_types__ {
     var ValueUnwrapper: typeof change_detection_util.ValueUnwrapper;
     type RenderDebugInfo = api.RenderDebugInfo;
     var RenderDebugInfo: typeof api.RenderDebugInfo;
-    type SecurityContext = security.SecurityContext;
     var SecurityContext: typeof security.SecurityContext;
-    type SanitizationService = security.SanitizationService;
+    type SecurityContext = security.SecurityContext;
     var SanitizationService: typeof security.SanitizationService;
+    type SanitizationService = security.SanitizationService;
     type TemplateRef_<C> = template_ref.TemplateRef_<C>;
     var TemplateRef_: typeof template_ref.TemplateRef_;
     var wtfInit: typeof wtf_init.wtfInit;
@@ -132,14 +123,13 @@ export declare namespace __core_private_types__ {
 }
 export declare var __core_private__: {
     isDefaultChangeDetectionStrategy: (changeDetectionStrategy: constants.ChangeDetectionStrategy) => boolean;
-    ChangeDetectorStatus: typeof constants.ChangeDetectorStatus;
+    ChangeDetectorState: typeof constants.ChangeDetectorState;
     CHANGE_DETECTION_STRATEGY_VALUES: constants.ChangeDetectionStrategy[];
     constructDependencies: (typeOrFunc: any, dependencies: any[]) => reflective_provider.ReflectiveDependency[];
     LifecycleHooks: typeof lifecycle_hooks.LifecycleHooks;
     LIFECYCLE_HOOKS_VALUES: lifecycle_hooks.LifecycleHooks[];
     ReflectorReader: typeof reflector_reader.ReflectorReader;
     ReflectorComponentResolver: typeof component_resolver.ReflectorComponentResolver;
-    CodegenComponentFactoryResolver: typeof component_factory_resolver.CodegenComponentFactoryResolver;
     AppElement: typeof element.AppElement;
     AppView: typeof view.AppView;
     DebugAppView: typeof view.DebugAppView;

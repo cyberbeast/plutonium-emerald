@@ -1,10 +1,3 @@
-/**
- * @license
- * Copyright Google Inc. All Rights Reserved.
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://angular.io/license
- */
 import { BaseException } from '../index';
 let _FakeAsyncTestZoneSpecType = Zone['FakeAsyncTestZoneSpec'];
 /**
@@ -22,8 +15,6 @@ let _FakeAsyncTestZoneSpecType = Zone['FakeAsyncTestZoneSpec'];
  *
  * @param fn
  * @returns {Function} The function wrapped to be executed in the fakeAsync zone
- *
- * @experimental
  */
 export function fakeAsync(fn) {
     if (Zone.current.get('FakeAsyncTestZoneSpec') != null) {
@@ -55,6 +46,15 @@ function _getFakeAsyncZoneSpec() {
     return zoneSpec;
 }
 /**
+ * Clear the queue of pending timers and microtasks.
+ * Tests no longer need to call this explicitly.
+ *
+ * @deprecated
+ */
+export function clearPendingTimers() {
+    // Do nothing.
+}
+/**
  * Simulates the asynchronous passage of time for the timers in the fakeAsync zone.
  *
  * The microtasks queue is drained at the very start of this function and after any timer callback
@@ -64,15 +64,12 @@ function _getFakeAsyncZoneSpec() {
  *
  * {@example testing/ts/fake_async.ts region='basic'}
  *
- * @experimental
  */
 export function tick(millis = 0) {
     _getFakeAsyncZoneSpec().tick(millis);
 }
 /**
  * Discard all remaining periodic tasks.
- *
- * @experimental
  */
 export function discardPeriodicTasks() {
     let zoneSpec = _getFakeAsyncZoneSpec();
@@ -81,8 +78,6 @@ export function discardPeriodicTasks() {
 }
 /**
  * Flush any pending microtasks.
- *
- * @experimental
  */
 export function flushMicrotasks() {
     _getFakeAsyncZoneSpec().flushMicrotasks();

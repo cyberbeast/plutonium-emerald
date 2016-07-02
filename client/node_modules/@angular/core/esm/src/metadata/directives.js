@@ -1,10 +1,3 @@
-/**
- * @license
- * Copyright Google Inc. All Rights Reserved.
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://angular.io/license
- */
 import { ChangeDetectionStrategy } from '../change_detection/constants';
 import { InjectableMetadata } from '../di/metadata';
 import { isPresent } from '../facade/lang';
@@ -573,7 +566,7 @@ export class DirectiveMetadata extends InjectableMetadata {
  * @stable
  */
 export class ComponentMetadata extends DirectiveMetadata {
-    constructor({ selector, inputs, outputs, properties, events, host, exportAs, moduleId, providers, viewProviders, changeDetection = ChangeDetectionStrategy.Default, queries, templateUrl, template, styleUrls, styles, animations, directives, pipes, encapsulation, interpolation, precompile } = {}) {
+    constructor({ selector, inputs, outputs, properties, events, host, exportAs, moduleId, providers, viewProviders, changeDetection = ChangeDetectionStrategy.Default, queries, templateUrl, template, styleUrls, styles, animations, directives, pipes, encapsulation, interpolation } = {}) {
         super({
             selector: selector,
             inputs: inputs,
@@ -597,7 +590,6 @@ export class ComponentMetadata extends DirectiveMetadata {
         this.moduleId = moduleId;
         this.animations = animations;
         this.interpolation = interpolation;
-        this.precompile = precompile;
     }
     /**
      * Defines the set of injectable objects that are visible to its view DOM children.

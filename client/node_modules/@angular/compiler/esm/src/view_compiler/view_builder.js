@@ -1,39 +1,26 @@
-/**
- * @license
- * Copyright Google Inc. All Rights Reserved.
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://angular.io/license
- */
-import { ViewEncapsulation } from '@angular/core';
-import { ChangeDetectorStatus, ViewType, isDefaultChangeDetectionStrategy } from '../../core_private';
-import { AnimationCompiler } from '../animation/animation_compiler';
-import { CompileIdentifierMetadata } from '../compile_metadata';
+import { ChangeDetectionStrategy, ViewEncapsulation } from '@angular/core';
+import { ViewType, isDefaultChangeDetectionStrategy } from '../../core_private';
 import { ListWrapper, SetWrapper, StringMapWrapper } from '../facade/collection';
 import { StringWrapper, isPresent } from '../facade/lang';
 import { Identifiers, identifierToken } from '../identifiers';
 import * as o from '../output/output_ast';
-import { templateVisitAll } from '../template_ast';
 import { CompileElement, CompileNode } from './compile_element';
 import { CompileView } from './compile_view';
-import { ChangeDetectorStatusEnum, DetectChangesVars, InjectMethodVars, ViewConstructorVars, ViewEncapsulationEnum, ViewProperties, ViewTypeEnum } from './constants';
-import { createDiTokenExpression, createFlatArray, getViewFactoryName } from './util';
+import { ChangeDetectionStrategyEnum, DetectChangesVars, InjectMethodVars, ViewConstructorVars, ViewEncapsulationEnum, ViewProperties, ViewTypeEnum } from './constants';
+import { templateVisitAll } from '../template_ast';
+import { getViewFactoryName, createFlatArray, createDiTokenExpression } from './util';
+import { CompileIdentifierMetadata } from '../compile_metadata';
+import { AnimationCompiler } from '../animation/animation_compiler';
 const IMPLICIT_TEMPLATE_VAR = '\$implicit';
 const CLASS_ATTR = 'class';
 const STYLE_ATTR = 'style';
 const NG_CONTAINER_TAG = 'ng-container';
 var parentRenderNodeVar = o.variable('parentRenderNode');
 var rootSelectorVar = o.variable('rootSelector');
-export class ViewFactoryDependency {
-    constructor(comp, placeholder) {
+export class ViewCompileDependency {
+    constructor(comp, factoryPlaceholder) {
         this.comp = comp;
-        this.placeholder = placeholder;
-    }
-}
-export class ComponentFactoryDependency {
-    constructor(comp, placeholder) {
-        this.comp = comp;
-        this.placeholder = placeholder;
+        this.factoryPlaceholder = factoryPlaceholder;
     }
 }
 export function buildView(view, template, targetDependencies) {
@@ -174,14 +161,8 @@ class ViewBuilderVisitor {
         this.view.nodes.push(compileElement);
         var compViewExpr = null;
         if (isPresent(component)) {
-            let nestedComponentIdentifier = new CompileIdentifierMetadata({ name: getViewFactoryName(component, 0) });
-            this.targetDependencies.push(new ViewFactoryDependency(component.type, nestedComponentIdentifier));
-            let precompileComponentIdentifiers = component.precompile.map((precompileComp) => {
-                var id = new CompileIdentifierMetadata({ name: precompileComp.name });
-                this.targetDependencies.push(new ComponentFactoryDependency(precompileComp, id));
-                return id;
-            });
-            compileElement.createComponentFactoryResolver(precompileComponentIdentifiers);
+            var nestedComponentIdentifier = new CompileIdentifierMetadata({ name: getViewFactoryName(component, 0) });
+            this.targetDependencies.push(new ViewCompileDependency(component, nestedComponentIdentifier));
             compViewExpr = o.variable(`compView_${nodeIndex}`); // fix highlighting: `
             compileElement.setComponentView(compViewExpr);
             this.view.createMethod.addStmt(compViewExpr
@@ -356,7 +337,7 @@ function createViewClass(view, renderCompTypeVar, nodeDebugInfosVar) {
         o.variable(view.className), renderCompTypeVar, ViewTypeEnum.fromValue(view.viewType),
         ViewConstructorVars.viewUtils, ViewConstructorVars.parentInjector,
         ViewConstructorVars.declarationEl,
-        ChangeDetectorStatusEnum.fromValue(getChangeDetectionMode(view))
+        ChangeDetectionStrategyEnum.fromValue(getChangeDetectionMode(view))
     ];
     if (view.genConfig.genDebugInfo) {
         superConstructorArgs.push(nodeDebugInfosVar);
@@ -492,11 +473,11 @@ function getChangeDetectionMode(view) {
     var mode;
     if (view.viewType === ViewType.COMPONENT) {
         mode = isDefaultChangeDetectionStrategy(view.component.changeDetection) ?
-            ChangeDetectorStatus.CheckAlways :
-            ChangeDetectorStatus.CheckOnce;
+            ChangeDetectionStrategy.CheckAlways :
+            ChangeDetectionStrategy.CheckOnce;
     }
     else {
-        mode = ChangeDetectorStatus.CheckAlways;
+        mode = ChangeDetectionStrategy.CheckAlways;
     }
     return mode;
 }

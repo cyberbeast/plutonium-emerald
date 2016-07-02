@@ -1,10 +1,3 @@
-/**
- * @license
- * Copyright Google Inc. All Rights Reserved.
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://angular.io/license
- */
 "use strict";
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
@@ -12,6 +5,7 @@ var __extends = (this && this.__extends) || function (d, b) {
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
 var chars = require('./chars');
+var collection_1 = require('./facade/collection');
 var lang_1 = require('./facade/lang');
 var html_tags_1 = require('./html_tags');
 var interpolation_config_1 = require('./interpolation_config');
@@ -100,7 +94,6 @@ var _HtmlTokenizer = (function () {
         this._line = 0;
         this._column = -1;
         this._expansionCaseStack = [];
-        this._inInterpolation = false;
         this.tokens = [];
         this.errors = [];
         this._input = file.content;
@@ -246,12 +239,8 @@ var _HtmlTokenizer = (function () {
         }
     };
     _HtmlTokenizer.prototype._attemptStr = function (chars) {
-        var len = chars.length;
-        if (this._index + len > this._length) {
-            return false;
-        }
         var initialPosition = this._savePosition();
-        for (var i = 0; i < len; i++) {
+        for (var i = 0; i < chars.length; i++) {
             if (!this._attemptCharCode(lang_1.StringWrapper.charCodeAt(chars, i))) {
                 // If attempting to parse the string fails, we want to reset the parser
                 // to where it was before the attempt
@@ -350,7 +339,6 @@ var _HtmlTokenizer = (function () {
                 break;
             }
             if (this._index > tagCloseStart.offset) {
-                // add the characters consumed by the previous if statement to the output
                 parts.push(this._input.substring(tagCloseStart.offset, this._index));
             }
             while (this._peek !== firstCharOfEnd) {
@@ -406,7 +394,7 @@ var _HtmlTokenizer = (function () {
         var savedPos = this._savePosition();
         var lowercaseTagName;
         try {
-            if (!chars.isAsciiLetter(this._peek)) {
+            if (!isAsciiLetter(this._peek)) {
                 throw this._createError(unexpectedCharacterErrorMsg(this._peek), this._getSpan());
             }
             var nameStart = this._index;
@@ -548,34 +536,43 @@ var _HtmlTokenizer = (function () {
         var start = this._getLocation();
         this._beginToken(HtmlTokenType.TEXT, start);
         var parts = [];
+        var interpolation = false;
         do {
+            var savedPos = this._savePosition();
+            // _attemptStr advances the position when it is true.
+            // To push interpolation symbols, we have to reset it.
             if (this._attemptStr(this.interpolationConfig.start)) {
-                parts.push(this.interpolationConfig.start);
-                this._inInterpolation = true;
+                this._restorePosition(savedPos);
+                for (var i = 0; i < this.interpolationConfig.start.length; i++) {
+                    parts.push(this._readChar(true));
+                }
+                interpolation = true;
             }
-            else if (this._attemptStr(this.interpolationConfig.end) && this._inInterpolation) {
-                parts.push(this.interpolationConfig.end);
-                this._inInterpolation = false;
+            else if (this._attemptStr(this.interpolationConfig.end) && interpolation) {
+                this._restorePosition(savedPos);
+                for (var i = 0; i < this.interpolationConfig.end.length; i++) {
+                    parts.push(this._readChar(true));
+                }
+                interpolation = false;
             }
             else {
+                this._restorePosition(savedPos);
                 parts.push(this._readChar(true));
             }
-        } while (!this._isTextEnd());
+        } while (!this._isTextEnd(interpolation));
         this._endToken([this._processCarriageReturns(parts.join(''))]);
     };
-    _HtmlTokenizer.prototype._isTextEnd = function () {
-        if (this._peek === chars.$LT || this._peek === chars.$EOF) {
+    _HtmlTokenizer.prototype._isTextEnd = function (interpolation) {
+        if (this._peek === chars.$LT || this._peek === chars.$EOF)
             return true;
-        }
         if (this.tokenizeExpansionForms) {
-            if (isExpansionFormStart(this._input, this._index, this.interpolationConfig.start)) {
-                // start of an expansion form
+            var savedPos = this._savePosition();
+            if (isExpansionFormStart(this._input, this._index, this.interpolationConfig.start))
                 return true;
-            }
-            if (this._peek === chars.$RBRACE && !this._inInterpolation && this._isInExpansionCase()) {
-                // end of and expansion case
+            this._restorePosition(savedPos);
+            if (this._peek === chars.$RBRACE && !interpolation &&
+                (this._isInExpansionCase() || this._isInExpansionForm()))
                 return true;
-            }
         }
         return false;
     };
@@ -595,7 +592,7 @@ var _HtmlTokenizer = (function () {
         var nbTokens = position[4];
         if (nbTokens < this.tokens.length) {
             // remove any extra tokens
-            this.tokens = this.tokens.slice(0, nbTokens);
+            this.tokens = collection_1.ListWrapper.slice(this.tokens, 0, nbTokens);
         }
     };
     _HtmlTokenizer.prototype._isInExpansionCase = function () {
@@ -611,28 +608,40 @@ var _HtmlTokenizer = (function () {
     return _HtmlTokenizer;
 }());
 function isNotWhitespace(code) {
-    return !chars.isWhitespace(code) || code === chars.$EOF;
+    return !isWhitespace(code) || code === chars.$EOF;
+}
+function isWhitespace(code) {
+    return (code >= chars.$TAB && code <= chars.$SPACE) || (code === chars.$NBSP);
 }
 function isNameEnd(code) {
-    return chars.isWhitespace(code) || code === chars.$GT || code === chars.$SLASH ||
-        code === chars.$SQ || code === chars.$DQ || code === chars.$EQ;
+    return isWhitespace(code) || code === chars.$GT || code === chars.$SLASH || code === chars.$SQ ||
+        code === chars.$DQ || code === chars.$EQ;
 }
 function isPrefixEnd(code) {
     return (code < chars.$a || chars.$z < code) && (code < chars.$A || chars.$Z < code) &&
         (code < chars.$0 || code > chars.$9);
 }
 function isDigitEntityEnd(code) {
-    return code == chars.$SEMICOLON || code == chars.$EOF || !chars.isAsciiHexDigit(code);
+    return code == chars.$SEMICOLON || code == chars.$EOF || !isAsciiHexDigit(code);
 }
 function isNamedEntityEnd(code) {
-    return code == chars.$SEMICOLON || code == chars.$EOF || !chars.isAsciiLetter(code);
+    return code == chars.$SEMICOLON || code == chars.$EOF || !isAsciiLetter(code);
 }
 function isExpansionFormStart(input, offset, interpolationStart) {
-    return input.charCodeAt(offset) == chars.$LBRACE &&
-        input.indexOf(interpolationStart, offset) != offset;
+    var substr = input.substring(offset);
+    return lang_1.StringWrapper.charCodeAt(substr, 0) === chars.$LBRACE &&
+        lang_1.StringWrapper.charCodeAt(substr, 1) !== chars.$LBRACE &&
+        !substr.startsWith(interpolationStart);
 }
 function isExpansionCaseStart(peek) {
-    return peek === chars.$EQ || chars.isAsciiLetter(peek);
+    return peek === chars.$EQ || isAsciiLetter(peek);
+}
+function isAsciiLetter(code) {
+    return code >= chars.$a && code <= chars.$z || code >= chars.$A && code <= chars.$Z;
+}
+function isAsciiHexDigit(code) {
+    return code >= chars.$a && code <= chars.$f || code >= chars.$A && code <= chars.$F ||
+        code >= chars.$0 && code <= chars.$9;
 }
 function compareCharCodeCaseInsensitive(code1, code2) {
     return toUpperCaseCharCode(code1) == toUpperCaseCharCode(code2);

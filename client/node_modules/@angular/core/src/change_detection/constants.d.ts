@@ -1,22 +1,30 @@
 /**
+ * Describes the current state of the change detector.
+ */
+export declare enum ChangeDetectorState {
+    /**
+     * `NeverChecked` means that the change detector has not been checked yet, and
+     * initialization methods should be called during detection.
+     */
+    NeverChecked = 0,
+    /**
+     * `CheckedBefore` means that the change detector has successfully completed at least
+     * one detection previously.
+     */
+    CheckedBefore = 1,
+    /**
+     * `Errored` means that the change detector encountered an error checking a binding
+     * or calling a directive lifecycle method and is now in an inconsistent state. Change
+     * detectors in this state will no longer detect changes.
+     */
+    Errored = 2,
+}
+/**
  * Describes within the change detector which strategy will be used the next time change
  * detection is triggered.
  * @stable
  */
 export declare enum ChangeDetectionStrategy {
-    /**
-     * `OnPush` means that the change detector's mode will be set to `CheckOnce` during hydration.
-     */
-    OnPush = 0,
-    /**
-     * `Default` means that the change detector's mode will be set to `CheckAlways` during hydration.
-     */
-    Default = 1,
-}
-/**
- * Describes the status of the detector.
- */
-export declare enum ChangeDetectorStatus {
     /**
      * `CheckedOnce` means that after calling detectChanges the mode of the change detector
      * will become `Checked`.
@@ -38,22 +46,20 @@ export declare enum ChangeDetectorStatus {
      */
     Detached = 3,
     /**
-     * `Errored` means that the change detector encountered an error checking a binding
-     * or calling a directive lifecycle method and is now in an inconsistent state. Change
-     * detectors in this state will no longer detect changes.
+     * `OnPush` means that the change detector's mode will be set to `CheckOnce` during hydration.
      */
-    Errored = 4,
+    OnPush = 4,
     /**
-     * `Destroyed` means that the change detector is destroyed.
+     * `Default` means that the change detector's mode will be set to `CheckAlways` during hydration.
      */
-    Destroyed = 5,
+    Default = 5,
 }
 /**
  * List of possible {@link ChangeDetectionStrategy} values.
  */
 export declare var CHANGE_DETECTION_STRATEGY_VALUES: ChangeDetectionStrategy[];
 /**
- * List of possible {@link ChangeDetectorStatus} values.
+ * List of possible {@link ChangeDetectorState} values.
  */
-export declare var CHANGE_DETECTOR_STATUS_VALUES: ChangeDetectorStatus[];
+export declare var CHANGE_DETECTOR_STATE_VALUES: ChangeDetectorState[];
 export declare function isDefaultChangeDetectionStrategy(changeDetectionStrategy: ChangeDetectionStrategy): boolean;

@@ -1,10 +1,3 @@
-/**
- * @license
- * Copyright Google Inc. All Rights Reserved.
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://angular.io/license
- */
 import { stringify } from '../facade/lang';
 /**
  * A parameter metadata that specifies a dependency.
@@ -49,7 +42,7 @@ import { stringify } from '../facade/lang';
  * @stable
  */
 export class InjectMetadata {
-    constructor(token) {
+    constructor(token /** TODO #9100 */) {
         this.token = token;
     }
     toString() { return `@Inject(${stringify(this.token)})`; }

@@ -1,10 +1,3 @@
-/**
- * @license
- * Copyright Google Inc. All Rights Reserved.
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://angular.io/license
- */
 "use strict";
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
@@ -13,16 +6,11 @@ var __extends = (this && this.__extends) || function (d, b) {
 };
 var exceptions_1 = require('../facade/exceptions');
 var lang_1 = require('../facade/lang');
-/**
- * @experimental Animation support is experimental.
- */
 exports.AUTO_STYLE = '*';
 /**
  * Metadata representing the entry of animations.
  * Instances of this class are provided via the animation DSL when the {@link trigger trigger
  * animation function} is called.
- *
- * @experimental Animation support is experimental.
  */
 var AnimationEntryMetadata = (function () {
     function AnimationEntryMetadata(name, definitions) {
@@ -32,9 +20,6 @@ var AnimationEntryMetadata = (function () {
     return AnimationEntryMetadata;
 }());
 exports.AnimationEntryMetadata = AnimationEntryMetadata;
-/**
- * @experimental Animation support is experimental.
- */
 var AnimationStateMetadata = (function () {
     function AnimationStateMetadata() {
     }
@@ -45,8 +30,6 @@ exports.AnimationStateMetadata = AnimationStateMetadata;
  * Metadata representing the entry of animations.
  * Instances of this class are provided via the animation DSL when the {@link state state animation
  * function} is called.
- *
- * @experimental Animation support is experimental.
  */
 var AnimationStateDeclarationMetadata = (function (_super) {
     __extends(AnimationStateDeclarationMetadata, _super);
@@ -62,8 +45,6 @@ exports.AnimationStateDeclarationMetadata = AnimationStateDeclarationMetadata;
  * Metadata representing the entry of animations.
  * Instances of this class are provided via the animation DSL when the
  * {@link transition transition animation function} is called.
- *
- * @experimental Animation support is experimental.
  */
 var AnimationStateTransitionMetadata = (function (_super) {
     __extends(AnimationStateTransitionMetadata, _super);
@@ -75,9 +56,6 @@ var AnimationStateTransitionMetadata = (function (_super) {
     return AnimationStateTransitionMetadata;
 }(AnimationStateMetadata));
 exports.AnimationStateTransitionMetadata = AnimationStateTransitionMetadata;
-/**
- * @experimental Animation support is experimental.
- */
 var AnimationMetadata = (function () {
     function AnimationMetadata() {
     }
@@ -88,8 +66,6 @@ exports.AnimationMetadata = AnimationMetadata;
  * Metadata representing the entry of animations.
  * Instances of this class are provided via the animation DSL when the {@link keyframes keyframes
  * animation function} is called.
- *
- * @experimental Animation support is experimental.
  */
 var AnimationKeyframesSequenceMetadata = (function (_super) {
     __extends(AnimationKeyframesSequenceMetadata, _super);
@@ -104,8 +80,6 @@ exports.AnimationKeyframesSequenceMetadata = AnimationKeyframesSequenceMetadata;
  * Metadata representing the entry of animations.
  * Instances of this class are provided via the animation DSL when the {@link style style animation
  * function} is called.
- *
- * @experimental Animation support is experimental.
  */
 var AnimationStyleMetadata = (function (_super) {
     __extends(AnimationStyleMetadata, _super);
@@ -122,8 +96,6 @@ exports.AnimationStyleMetadata = AnimationStyleMetadata;
  * Metadata representing the entry of animations.
  * Instances of this class are provided via the animation DSL when the {@link animate animate
  * animation function} is called.
- *
- * @experimental Animation support is experimental.
  */
 var AnimationAnimateMetadata = (function (_super) {
     __extends(AnimationAnimateMetadata, _super);
@@ -135,9 +107,6 @@ var AnimationAnimateMetadata = (function (_super) {
     return AnimationAnimateMetadata;
 }(AnimationMetadata));
 exports.AnimationAnimateMetadata = AnimationAnimateMetadata;
-/**
- * @experimental Animation support is experimental.
- */
 var AnimationWithStepsMetadata = (function (_super) {
     __extends(AnimationWithStepsMetadata, _super);
     function AnimationWithStepsMetadata() {
@@ -155,8 +124,6 @@ exports.AnimationWithStepsMetadata = AnimationWithStepsMetadata;
  * Metadata representing the entry of animations.
  * Instances of this class are provided via the animation DSL when the {@link sequence sequence
  * animation function} is called.
- *
- * @experimental Animation support is experimental.
  */
 var AnimationSequenceMetadata = (function (_super) {
     __extends(AnimationSequenceMetadata, _super);
@@ -176,8 +143,6 @@ exports.AnimationSequenceMetadata = AnimationSequenceMetadata;
  * Metadata representing the entry of animations.
  * Instances of this class are provided via the animation DSL when the {@link group group animation
  * function} is called.
- *
- * @experimental Animation support is experimental.
  */
 var AnimationGroupMetadata = (function (_super) {
     __extends(AnimationGroupMetadata, _super);
@@ -242,8 +207,6 @@ exports.AnimationGroupMetadata = AnimationGroupMetadata;
  * ### Example ([live demo](http://plnkr.co/edit/Kez8XGWBxWue7qP7nNvF?p=preview))
  *
  * {@example core/animation/ts/dsl/animation_example.ts region='Component'}
- *
- * @experimental Animation support is experimental.
  */
 function animate(timing, styles) {
     if (styles === void 0) { styles = null; }
@@ -290,8 +253,6 @@ exports.animate = animate;
  * ### Example ([live demo](http://plnkr.co/edit/Kez8XGWBxWue7qP7nNvF?p=preview))
  *
  * {@example core/animation/ts/dsl/animation_example.ts region='Component'}
- *
- * @experimental Animation support is experimental.
  */
 function group(steps) {
     return new AnimationGroupMetadata(steps);
@@ -333,8 +294,6 @@ exports.group = group;
  * ### Example ([live demo](http://plnkr.co/edit/Kez8XGWBxWue7qP7nNvF?p=preview))
  *
  * {@example core/animation/ts/dsl/animation_example.ts region='Component'}
- *
- * @experimental Animation support is experimental.
  */
 function sequence(steps) {
     return new AnimationSequenceMetadata(steps);
@@ -384,8 +343,6 @@ exports.sequence = sequence;
  * ### Example ([live demo](http://plnkr.co/edit/Kez8XGWBxWue7qP7nNvF?p=preview))
  *
  * {@example core/animation/ts/dsl/animation_example.ts region='Component'}
- *
- * @experimental Animation support is experimental.
  */
 function style(tokens) {
     var input;
@@ -461,8 +418,6 @@ exports.style = style;
  * ### Example ([live demo](http://plnkr.co/edit/Kez8XGWBxWue7qP7nNvF?p=preview))
  *
  * {@example core/animation/ts/dsl/animation_example.ts region='Component'}
- *
- * @experimental Animation support is experimental.
  */
 function state(stateNameExpr, styles) {
     return new AnimationStateDeclarationMetadata(stateNameExpr, styles);
@@ -514,8 +469,6 @@ exports.state = state;
  * ### Example ([live demo](http://plnkr.co/edit/Kez8XGWBxWue7qP7nNvF?p=preview))
  *
  * {@example core/animation/ts/dsl/animation_example.ts region='Component'}
- *
- * @experimental Animation support is experimental.
  */
 function keyframes(steps) {
     return new AnimationKeyframesSequenceMetadata(steps);
@@ -606,8 +559,6 @@ exports.keyframes = keyframes;
  * ### Example ([live demo](http://plnkr.co/edit/Kez8XGWBxWue7qP7nNvF?p=preview))
  *
  * {@example core/animation/ts/dsl/animation_example.ts region='Component'}
- *
- * @experimental Animation support is experimental.
  */
 function transition(stateChangeExpr, steps) {
     var animationData = lang_1.isArray(steps) ? new AnimationSequenceMetadata(steps) :
@@ -668,8 +619,6 @@ exports.transition = transition;
  * ### Example ([live demo](http://plnkr.co/edit/Kez8XGWBxWue7qP7nNvF?p=preview))
  *
  * {@example core/animation/ts/dsl/animation_example.ts region='Component'}
- *
- * @experimental Animation support is experimental.
  */
 function trigger(name, animation) {
     return new AnimationEntryMetadata(name, animation);

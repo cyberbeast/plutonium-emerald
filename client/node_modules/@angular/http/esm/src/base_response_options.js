@@ -1,10 +1,3 @@
-/**
- * @license
- * Copyright Google Inc. All Rights Reserved.
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://angular.io/license
- */
 import { Injectable } from '@angular/core';
 import { isPresent } from '../src/facade/lang';
 import { ResponseType } from './enums';
@@ -34,8 +27,6 @@ import { Headers } from './headers';
  *
  * console.log('res.json():', res.json()); // Object {name: "Jeff"}
  * ```
- *
- * @experimental
  */
 export class ResponseOptions {
     constructor({ body, status, headers, statusText, type, url } = {}) {

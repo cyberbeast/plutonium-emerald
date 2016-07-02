@@ -1,11 +1,4 @@
-/**
- * @license
- * Copyright Google Inc. All Rights Reserved.
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://angular.io/license
- */
-import { ChangeDetectorStatus } from '../change_detection/constants';
+import { ChangeDetectionStrategy } from '../change_detection/constants';
 import { unimplemented } from '../facade/exceptions';
 /**
  * @stable
@@ -83,7 +76,7 @@ export class ViewRef_ {
     get context() { return this._view.context; }
     get destroyed() { return this._view.destroyed; }
     markForCheck() { this._view.markPathToRootAsCheckOnce(); }
-    detach() { this._view.cdMode = ChangeDetectorStatus.Detached; }
+    detach() { this._view.cdMode = ChangeDetectionStrategy.Detached; }
     detectChanges() { this._view.detectChanges(false); }
     checkNoChanges() { this._view.detectChanges(true); }
     reattach() {

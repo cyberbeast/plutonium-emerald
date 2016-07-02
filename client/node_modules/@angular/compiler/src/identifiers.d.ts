@@ -11,8 +11,6 @@ export declare class Identifiers {
     static QueryList: CompileIdentifierMetadata;
     static TemplateRef: CompileIdentifierMetadata;
     static TemplateRef_: CompileIdentifierMetadata;
-    static CodegenComponentFactoryResolver: CompileIdentifierMetadata;
-    static ComponentFactoryResolver: CompileIdentifierMetadata;
     static ValueUnwrapper: CompileIdentifierMetadata;
     static Injector: CompileIdentifierMetadata;
     static ViewEncapsulation: CompileIdentifierMetadata;
@@ -23,7 +21,7 @@ export declare class Identifiers {
     static Renderer: CompileIdentifierMetadata;
     static SimpleChange: CompileIdentifierMetadata;
     static uninitialized: CompileIdentifierMetadata;
-    static ChangeDetectorStatus: CompileIdentifierMetadata;
+    static ChangeDetectorState: CompileIdentifierMetadata;
     static checkBinding: CompileIdentifierMetadata;
     static flattenNestedViewRenderNodes: CompileIdentifierMetadata;
     static devModeEqual: CompileIdentifierMetadata;

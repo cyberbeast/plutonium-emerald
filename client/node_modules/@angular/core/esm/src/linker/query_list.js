@@ -1,10 +1,3 @@
-/**
- * @license
- * Copyright Google Inc. All Rights Reserved.
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://angular.io/license
- */
 import { EventEmitter } from '../facade/async';
 import { ListWrapper } from '../facade/collection';
 import { getSymbolIterator } from '../facade/lang';
@@ -39,41 +32,33 @@ export class QueryList {
     }
     get changes() { return this._emitter; }
     get length() { return this._results.length; }
-    get first() { return this._results[0]; }
-    get last() { return this._results[this.length - 1]; }
+    get first() { return ListWrapper.first(this._results); }
+    get last() { return ListWrapper.last(this._results); }
     /**
-     * See
-     * [Array.map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map)
+     * returns a new array with the passed in function applied to each element.
      */
     map(fn) { return this._results.map(fn); }
     /**
-     * See
-     * [Array.filter](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter)
+     * returns a filtered array.
      */
-    filter(fn) {
-        return this._results.filter(fn);
-    }
+    filter(fn) { return this._results.filter(fn); }
     /**
-     * See
-     * [Array.reduce](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce)
+     * returns a reduced value.
      */
     reduce(fn, init) {
         return this._results.reduce(fn, init);
     }
     /**
-     * See
-     * [Array.forEach](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach)
+     * executes function for each element in a query.
      */
     forEach(fn) { this._results.forEach(fn); }
     /**
-     * See
-     * [Array.some](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/some)
+     * converts QueryList into an array
      */
-    some(fn) {
-        return this._results.some(fn);
+    toArray() { return ListWrapper.clone(this._results); }
+    [getSymbolIterator()]() {
+        return this._results[getSymbolIterator()]();
     }
-    toArray() { return this._results.slice(); }
-    [getSymbolIterator()]() { return this._results[getSymbolIterator()](); }
     toString() { return this._results.toString(); }
     reset(res) {
         this._results = ListWrapper.flatten(res);

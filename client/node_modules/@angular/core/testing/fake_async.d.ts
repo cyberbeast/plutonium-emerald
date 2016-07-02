@@ -13,10 +13,15 @@
  *
  * @param fn
  * @returns {Function} The function wrapped to be executed in the fakeAsync zone
- *
- * @experimental
  */
-export declare function fakeAsync(fn: Function): (...args: any[]) => any;
+export declare function fakeAsync(fn: Function): Function;
+/**
+ * Clear the queue of pending timers and microtasks.
+ * Tests no longer need to call this explicitly.
+ *
+ * @deprecated
+ */
+export declare function clearPendingTimers(): void;
 /**
  * Simulates the asynchronous passage of time for the timers in the fakeAsync zone.
  *
@@ -27,18 +32,13 @@ export declare function fakeAsync(fn: Function): (...args: any[]) => any;
  *
  * {@example testing/ts/fake_async.ts region='basic'}
  *
- * @experimental
  */
 export declare function tick(millis?: number): void;
 /**
  * Discard all remaining periodic tasks.
- *
- * @experimental
  */
 export declare function discardPeriodicTasks(): void;
 /**
  * Flush any pending microtasks.
- *
- * @experimental
  */
 export declare function flushMicrotasks(): void;

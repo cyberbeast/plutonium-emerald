@@ -1,14 +1,5 @@
-/**
- * @license
- * Copyright Google Inc. All Rights Reserved.
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://angular.io/license
- */
 import { Provider, ReflectiveInjector, Type } from '../index';
-/**
- * @experimental
- */
+export { async } from './async';
 export declare class TestInjector {
     private _instantiated;
     private _injector;
@@ -21,9 +12,6 @@ export declare class TestInjector {
     get(token: any): any;
     execute(tokens: any[], fn: Function): any;
 }
-/**
- * @experimental
- */
 export declare function getTestInjector(): TestInjector;
 /**
  * Set the providers that the test injector should use. These should be providers
@@ -35,14 +23,10 @@ export declare function getTestInjector(): TestInjector;
  *
  * Test Providers for individual platforms are available from
  * 'angular2/platform/testing/<platform_name>'.
- *
- * @experimental
  */
 export declare function setBaseTestProviders(platformProviders: Array<Type | Provider | any[]>, applicationProviders: Array<Type | Provider | any[]>): void;
 /**
  * Reset the providers for the test injector.
- *
- * @experimental
  */
 export declare function resetBaseTestProviders(): void;
 /**
@@ -67,19 +51,32 @@ export declare function resetBaseTestProviders(): void;
  * eventually
  *   becomes `it('...', @Inject (object: AClass, async: AsyncTestCompleter) => { ... });`
  *
- * @stable
  */
-export declare function inject(tokens: any[], fn: Function): () => any;
-/**
- * @experimental
- */
+export declare function inject(tokens: any[], fn: Function): Function;
 export declare class InjectSetupWrapper {
     private _providers;
     constructor(_providers: () => any);
     private _addProviders();
-    inject(tokens: any[], fn: Function): () => any;
+    inject(tokens: any[], fn: Function): Function;
+    /** @deprecated {use async(withProviders().inject())} */
+    injectAsync(tokens: any[], fn: Function): Function;
 }
-/**
- * @experimental
- */
 export declare function withProviders(providers: () => any): InjectSetupWrapper;
+/**
+ * @deprecated {use async(inject())}
+ *
+ * Allows injecting dependencies in `beforeEach()` and `it()`. The test must return
+ * a promise which will resolve when all asynchronous activity is complete.
+ *
+ * Example:
+ *
+ * ```
+ * it('...', injectAsync([AClass], (object) => {
+ *   return object.doSomething().then(() => {
+ *     expect(...);
+ *   });
+ * })
+ * ```
+ *
+ */
+export declare function injectAsync(tokens: any[], fn: Function): Function;

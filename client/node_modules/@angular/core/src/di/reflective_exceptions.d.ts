@@ -1,5 +1,4 @@
 import { BaseException, WrappedException } from '../facade/exceptions';
-import { Type } from '../facade/lang';
 import { ReflectiveInjector } from './reflective_injector';
 import { ReflectiveKey } from './reflective_key';
 /**
@@ -127,7 +126,7 @@ export declare class InvalidProviderError extends BaseException {
  * @stable
  */
 export declare class NoAnnotationError extends BaseException {
-    constructor(typeOrFunc: Type | Function, params: any[][]);
+    constructor(typeOrFunc: any, params: any[][]);
     private static _genMessage(typeOrFunc, params);
 }
 /**
@@ -145,7 +144,7 @@ export declare class NoAnnotationError extends BaseException {
  * @stable
  */
 export declare class OutOfBoundsError extends BaseException {
-    constructor(index: number);
+    constructor(index: any);
 }
 /**
  * Thrown when a multi provider and a regular provider are bound to the same token.
