@@ -29,6 +29,7 @@ import { ProjectService } from './project.service';
 })
 
 export class ProjectDetailComponent {
+    // Inputs received from the AppComponent
     @Input()
-    project: Project;
+    project: Project; //project input is the project set at the onSelect method attached to the click event of the Edit button of App Component View.
 }

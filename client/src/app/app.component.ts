@@ -30,21 +30,25 @@ import { PROJECTS } from './mock-projects';
 })
 
 export class AppComponent implements OnInit{
-  title = 'Plutonium';
-  subtitle = "Emerald Prototype Build";
-  projects = PROJECTS;
-  selectedProject: Project;
+  title = 'Plutonium'; //App Title
+  subtitle = "Emerald Prototype Build"; //App Subtitle
+  projects = PROJECTS; //projects property. DEFINED in data-structures.ts. POPULATED by mock-projects.ts.
+  selectedProject: Project; //selectedProject property. USED when user clicks on the edit button of a project card.
 
+  // onSelect method triggered by the click event of the Edit button on a project card.
   onSelect(project: Project) {
     this.selectedProject = project;
   }
 
+  // constructor
   constructor(private projectService: ProjectService) { }
   
+  // Supporting method for the ngOnInit() operation. CALLED by ngOnInit.
   getProjects(){
     this.projectService.getProjects().then(projects => this.projects = projects);
   }
 
+  // ngOnInit() method triggered at the initialization lifecycle hook. PROVIDED by angular2.
   ngOnInit(){
     this.getProjects();
   }
