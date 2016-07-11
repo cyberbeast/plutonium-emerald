@@ -20,11 +20,14 @@
        <md-card-title>{{project.name | uppercase}}</md-card-title>
        <md-card-subtitle>API PROJECT</md-card-subtitle> <md-card-content><p>{{project.description}}</p></md-card-content>
        <md-card-actions>
-        <button md-button>EDIT</button>
+        <button md-button (click)="onSelect(project)">EDIT</button>
         <button md-button>DELETE</button>
         </md-card-actions>
     </md-card>
    </md-grid-tile>
 </md-grid-list>
+
+<project-detail [project] = "selectedProject"></project-detail>
+
 
 

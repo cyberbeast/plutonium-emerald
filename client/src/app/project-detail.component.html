@@ -1,0 +1,19 @@
+<div *ngIf="project">
+    <div style="margin: 10px 10px 10px 10px;"></div>
+    <center><button md-raised-button>NEW FUNCTION</button></center>
+    <br />
+
+    <md-grid-list cols="3" rowHeight="4:3" gutterSize="80px" style="margin:0 100px 0 100px;">
+    <md-grid-tile *ngFor="let function of project.project_functions">
+        <md-card>
+            <!--<md-card-subtitle>{{project.id}}</md-card-subtitle>-->
+            <md-card-title>{{function.name | uppercase}}</md-card-title>
+            <md-card-content><p>{{function.description}}</p></md-card-content>
+            <md-card-actions>
+                <button md-button>EDIT FN</button>
+                <button md-button>DELETE FN</button>
+            </md-card-actions>
+        </md-card>
+    </md-grid-tile>
+    </md-grid-list>
+</div>

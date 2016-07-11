@@ -10,6 +10,12 @@ export class ProjectService {
     getProjects(){
         // DUMMY DATA RETURN BEGIN>>>>>
         return Promise.resolve(PROJECTS);
-        // DUMMY DATA RETURN END>>>>>
+        // DUMMY DATA RETURN END>>>>>>>
+    }
+
+    getProjectFunctions(name){
+        // DUMMY DATA RETURN BEGIN>>>>>
+        return Promise.resolve("Output from getProject Functions");
+        // DUMMY DATA RETURN END>>>>>>>
     }
 }
