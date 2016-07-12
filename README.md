@@ -19,7 +19,9 @@
     *  Prepared initial project scaffolding.
 
 ### Stack
-> add text here..
+> The Emerald Stack is prone to changes due to its experimental nature. However, the following image can be used as a yardstick. Team pinkHelium is currently playing around with different technologies to put together the most appropriate stack for the cause. Bear with us if this section seems to volatile. We love the ever-changing playground of the web. :)
+
+![Plutonium Stack](https://docs.google.com/drawings/d/1yV-FcNkknzPuRIybjUT3yKvG6EuWBVnZgJvsuGoHgD0/pub?w=586&h=451)
 
 ### Instructions
 Open a terminal instance.
