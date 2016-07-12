@@ -1,3 +1,12 @@
+.blUI {
+    background:#19B5FE; 
+    color:white;
+}
+
+.blUI-fab {
+    background: #F22613;
+}
+
 .blUI-toolbar-primary {
     background:#19B5FE;
     color:white;
@@ -6,4 +15,12 @@
 	   -moz-box-shadow: 0 8px 6px -6px #446CB3;
 	        box-shadow: 0 8px 6px -6px #446CB3;
             z-index: 100;
+}
+
+.blUI-toolbar-secondary {
+    padding-top: 10px;
+    background:#ABB7B7;
+    color:white;
+    /*text-shadow: 1.5px 1.5px #446CB3;*/
+    z-index: -100;
 }

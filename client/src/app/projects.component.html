@@ -1,0 +1,36 @@
+
+
+<!--<div style="margin: 10px 10px 10px 10px;"></div>-->
+<center>
+  <button md-mini-fab class="blUI-fab" (click)="gotoDashboardView()">
+    <md-icon class="md-24">dashboard</md-icon>
+  </button>
+  &nbsp;
+  <button md-fab class="blUI-fab">
+    <md-icon class="md-24">add</md-icon>
+  </button>
+  &nbsp;
+  <button md-mini-fab class="blUI-fab">
+    <md-icon class="md-24">refresh</md-icon>
+  </button>
+  &nbsp;
+</center>
+<br />
+
+<md-grid-list cols="3" rowHeight="4:3" gutterSize="80px" style="margin:0 100px 0 100px;">
+   <md-grid-tile *ngFor="let project of projects">
+     <md-card>
+       <md-card-title>{{project.name | uppercase}}</md-card-title>
+       <md-card-subtitle>API PROJECT</md-card-subtitle> <md-card-content><p>{{project.description}}</p></md-card-content>
+       <md-card-actions>
+        <button md-button (click)="onSelect(project)">EDIT</button>
+        <button md-button>DELETE</button>
+        </md-card-actions>
+    </md-card>
+   </md-grid-tile>
+</md-grid-list>
+
+<project-detail [project] = "selectedProject"></project-detail>
+
+
+

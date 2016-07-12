@@ -12,4 +12,7 @@ export class ProjectService {
         return Promise.resolve(PROJECTS);
         // DUMMY DATA RETURN END>>>>>>>
     }
+    getProject(id: number) {
+        return this.getProjects().then(projects => projects.find(project => project.id === id));
+    }
 }

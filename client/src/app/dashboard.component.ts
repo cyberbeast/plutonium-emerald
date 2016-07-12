@@ -1,6 +1,6 @@
 // ANGULAR2 CORE IMPORTS BEGIN>>>>>>>>>>>>>
 import { Component } from '@angular/core';
-import { ROUTER_DIRECTIVES } from '@angular/router';
+import { Router } from '@angular/router';
 // ANGULAR2 CORE IMPORTS END>>>>>>>>>>>>>>>
 
 // UI IMPORTS BEGIN>>>>>>>>>>>>>>>>>>>>>>>>
@@ -11,30 +11,29 @@ import { MD_GRID_LIST_DIRECTIVES } from '@angular2-material/grid-list';
 import { MD_TOOLBAR_DIRECTIVES } from '@angular2-material/toolbar';
 // UI IMPORTS END>>>>>>>>>>>>>>>>>>>>>>>>>>
 
-// DEPENDENCY IMPORTS BEGIN>>>>>>>>>>>>>>>>
-import { Project } from './data-structures';
-import { ProjectService } from './project.service';
-import { ProjectsComponent } from "./projects.component";
-// DEPENDENCY IMPORTS END>>>>>>>>>>>>>>>>>>
-
 @Component({
     moduleId: module.id,
-    selector: 'app-root',
-    templateUrl: 'app.component.html',
-    styleUrls: ['app.component.css'],
-    directives: [
-        ProjectsComponent,
-        MD_TOOLBAR_DIRECTIVES,
-        MdIcon,
-        ROUTER_DIRECTIVES
+    selector:'dashboard',
+    templateUrl: 'dashboard.component.html',
+    styleUrls:[
+        'dashboard.component.css'
     ],
-    providers: [
-        ProjectService,
+    directives: [
+        MdIcon,
+        MD_BUTTON_DIRECTIVES
+    ],
+    providers:[
         MdIconRegistry
     ]
 })
 
-export class AppComponent {
-    title = 'Plutonium'; //App Title
-    subtitle = "Emerald Prototype Build"; //App Subtitle 
+export class DashboardComponent {
+    constructor(
+        private router: Router
+    ){}
+
+    gotoProjectsView(){
+        this.router.navigate(['/projects']);
+
+    }
 }
