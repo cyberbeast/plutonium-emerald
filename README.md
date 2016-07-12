@@ -1,6 +1,6 @@
 <p align="center">
   <h1 align="center">Plutonium - Emerald Build</h1>
-  <p align="center">Plutonium Emerald is a prototype build of [Plutonium2]. The Emerald build facilitates a bare minimum front-end scaffolding to ensure that back-end application logic can be experimented with here before integration with Plutonium's major release builds. Team pinkHelium believes in serving well constructed deployment worthy platforms via its major release channels. Emerald is where more advanced features get tested before being accepted into a major release build.</p>
+  <p align="center">Plutonium Emerald is a prototype build of <a href="https://github.com/pinkhelium/plutonium2">Plutonium2</a>. The Emerald build facilitates a bare minimum front-end scaffolding to ensure that back-end application logic can be experimented with here before integration with Plutonium's major release builds. Team pinkHelium believes in serving well constructed deployment worthy platforms via its major release channels. Emerald is where more advanced features get tested before being accepted into a major release build.</p>
 </p>
 
 
@@ -21,7 +21,7 @@
     *  Prepared initial project scaffolding.
 
 ### Stack
-> The Emerald Stack is prone to changes due to its experimental nature. However, the following image can be used as a yardstick. Team pinkHelium is currently playing around with different technologies to put together the most appropriate stack for the cause. Bear with us if this section seems to volatile. We love the ever-changing playground of the web. :)
+> The Emerald Stack is prone to changes due to its experimental nature. However, the following image can be used as a yardstick. Team pinkHelium is currently playing around with different technologies to put together the most appropriate stack for the cause. Bear with us if this section seems too volatile. We love the ever-changing playground of the web. :)
 
 <p align="center">
     <img src="https://docs.google.com/drawings/d/1yV-FcNkknzPuRIybjUT3yKvG6EuWBVnZgJvsuGoHgD0/pub?w=586&h=451">
