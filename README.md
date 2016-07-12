@@ -12,7 +12,8 @@
 * ### ***0.0.1***
     * Added a project component view. Clicking the edit button on a project card toggles the respective component view.
     * Added support for Material Design Icons.
-    * Improved UI.
+    * Improved UI/UX.
+    * Added angular-router implementation. Screen/Process flow is smoother.
 
 * ### ***0.0.0*** 
     *  Prepared initial project scaffolding.
