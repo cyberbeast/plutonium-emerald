@@ -23,13 +23,13 @@
 ### Instructions
 Open a terminal instance.
 ```sh
-$ cd client && ng build
+$ cd client && npm install
+$ ng build
 ```
 
 Open another terminal instance and navigate to the plutonium-emerald root directory.
 ```sh
-$ cd server
-$ npm install
+$ cd server && npm install
 $ node app.js
 ```
 
