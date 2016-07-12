@@ -27,8 +27,6 @@
     <img src="https://docs.google.com/drawings/d/1yV-FcNkknzPuRIybjUT3yKvG6EuWBVnZgJvsuGoHgD0/pub?w=586&h=451">
 </p>
 
-![Plutonium Stack](https://docs.google.com/drawings/d/1yV-FcNkknzPuRIybjUT3yKvG6EuWBVnZgJvsuGoHgD0/pub?w=586&h=451)
-
 ### Instructions
 Open a terminal instance.
 ```bash
