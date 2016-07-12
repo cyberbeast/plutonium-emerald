@@ -9,10 +9,12 @@
 * <<ADD MORE>>
 
 ### Version (Changelog)
-* ### ***1.0.1***
+* ### ***0.0.1***
     * Added a project component view. Clicking the edit button on a project card toggles the respective component view.
+    * Added support for Material Design Icons.
+    * Improved UI.
 
-* ### ***1.0.0*** 
+* ### ***0.0.0*** 
     *  Prepared initial project scaffolding.
 
 ### Stack
