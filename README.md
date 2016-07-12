@@ -23,19 +23,23 @@
 ### Stack
 > The Emerald Stack is prone to changes due to its experimental nature. However, the following image can be used as a yardstick. Team pinkHelium is currently playing around with different technologies to put together the most appropriate stack for the cause. Bear with us if this section seems to volatile. We love the ever-changing playground of the web. :)
 
+<p align="center">
+    <img src="https://docs.google.com/drawings/d/1yV-FcNkknzPuRIybjUT3yKvG6EuWBVnZgJvsuGoHgD0/pub?w=586&h=451">
+</p>
+
 ![Plutonium Stack](https://docs.google.com/drawings/d/1yV-FcNkknzPuRIybjUT3yKvG6EuWBVnZgJvsuGoHgD0/pub?w=586&h=451)
 
 ### Instructions
 Open a terminal instance.
-```sh
-$ cd client && npm install
-$ ng build
+```bash
+cd client && npm install
+ng build
 ```
 
 Open another terminal instance and navigate to the plutonium-emerald root directory.
-```sh
-$ cd server && npm install
-$ node app.js
+```bash
+cd server && npm install
+node app.js
 ```
 
 > Access http://localhost:3005 via a browser.
