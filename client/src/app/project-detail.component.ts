@@ -24,8 +24,8 @@ import { ProjectService } from './project.service';
     selector: 'project-detail',
     templateUrl: 'project-detail.component.html',
     styleUrls:['project-detail.component.css'],
-    directives: [MD_CARD_DIRECTIVES, MD_BUTTON_DIRECTIVES, MD_GRID_LIST_DIRECTIVES, MD_TOOLBAR_DIRECTIVES],
-    providers:[ProjectService]
+    directives: [MD_CARD_DIRECTIVES, MD_BUTTON_DIRECTIVES, MD_GRID_LIST_DIRECTIVES, MD_TOOLBAR_DIRECTIVES, MdIcon],
+    providers:[ProjectService, MdIconRegistry]
 })
 
 export class ProjectDetailComponent {

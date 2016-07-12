@@ -25,8 +25,8 @@ import { PROJECTS } from './mock-projects';
   selector: 'app-root',
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.css'],
-  directives: [MD_CARD_DIRECTIVES, MD_BUTTON_DIRECTIVES, MD_GRID_LIST_DIRECTIVES, MD_TOOLBAR_DIRECTIVES, ProjectDetailComponent],
-  providers:[ProjectService]
+  directives: [MD_CARD_DIRECTIVES, MD_BUTTON_DIRECTIVES, MD_GRID_LIST_DIRECTIVES, MD_TOOLBAR_DIRECTIVES, ProjectDetailComponent, MdIcon],
+  providers:[ProjectService, MdIconRegistry]
 })
 
 export class AppComponent implements OnInit{

@@ -7,5 +7,7 @@ if (environment.production) {
   enableProdMode();
 }
 
-bootstrap(AppComponent);
+bootstrap(AppComponent, [
+    HTTP_PROVIDERS
+]);
 

@@ -4,14 +4,28 @@
   }
 </style>
 
-<md-toolbar [color]="myColor">
+<md-toolbar class="blUI-toolbar-primary">
   <span><h1>{{title | uppercase}}</h1></span>
   <span class="example-fill-remaining-space"></span>  
   <span><h3>{{subtitle}}</h3></span>
 </md-toolbar>
+<br>
 
-<div style="margin: 10px 10px 10px 10px;"></div>
-<center><button md-raised-button>NEW PROJECT</button></center>
+<!--<div style="margin: 10px 10px 10px 10px;"></div>-->
+<center>
+  <button md-mini-fab class="blUI-fab">
+    <md-icon class="md-24">refresh</md-icon>
+  </button>
+  &nbsp;
+  <button md-fab class="blUI-fab">
+    <md-icon class="md-24">add</md-icon>
+  </button>
+  &nbsp;
+  <button md-mini-fab class="blUI-fab">
+    <md-icon class="md-24">dashboard</md-icon>
+  </button>
+  &nbsp;
+</center>
 <br />
 
 <md-grid-list cols="3" rowHeight="4:3" gutterSize="80px" style="margin:0 100px 0 100px;">

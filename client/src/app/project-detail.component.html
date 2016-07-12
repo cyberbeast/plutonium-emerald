@@ -1,6 +1,18 @@
 <div *ngIf="project">
-    <div style="margin: 10px 10px 10px 10px;"></div>
-    <center><button md-raised-button>NEW FUNCTION</button></center>
+    <!--<div style="margin: 10px 10px 10px 10px;"></div>-->
+    <center>
+        <button md-mini-fab class="blUI-fab">
+            <md-icon class="md-24">skip_previous</md-icon>
+        </button>
+        &nbsp;
+        <button md-fab class="blUI-fab">
+            <md-icon class="md-24">library_add</md-icon>
+        </button>
+        &nbsp;
+        <button md-mini-fab class="blUI-fab">
+            <md-icon class="md-24">refresh</md-icon>
+        </button>
+    </center>
     <br />
 
     <md-grid-list cols="3" rowHeight="4:3" gutterSize="80px" style="margin:0 100px 0 100px;">
