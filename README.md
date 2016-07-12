@@ -1,6 +1,6 @@
 # Plutonium - Emerald Build
 
-> Plutonium Emerald is a prototype build of [Plutonium2]. The Emerald build facilitates a bare minimum front-end scaffolding to ensure that back-end application logic can be experimented with here before integration with Plutomiun's major release builds. Team pinkHelium believes in serving well constructed deployment worthy platforms via its major release channels. Emerald is where more advanced features get tested before being accepted into a major release build.
+> Plutonium Emerald is a prototype build of [Plutonium2]. The Emerald build facilitates a bare minimum front-end scaffolding to ensure that back-end application logic can be experimented with here before integration with Plutonium's major release builds. Team pinkHelium believes in serving well constructed deployment worthy platforms via its major release channels. Emerald is where more advanced features get tested before being accepted into a major release build.
 
 ### Objectives
 * Conceptualize a minimalistic UI/UX inspired by Google's Material Design. **(ACHIEVED)**
