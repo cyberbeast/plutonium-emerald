@@ -1,6 +1,6 @@
 # Plutonium - Emerald Build
 
-> Plutonium Emerald is a prototype build of [Plutonium2]. The Emerald build facilitates a bare minimum front-end scaffolding to ensure that back-end application logic can be experimented with here before integration with Plutomium's major release builds. Team pinkHelium believes in serving well constructed deployment worthy platforms via its major release channels. Emerald is where more advanced features get tested before being accepted into a major release build.
+> Plutonium Emerald is a prototype build of [Plutonium2]. The Emerald build facilitates a bare minimum front-end scaffolding to ensure that back-end application logic can be experimented with here before integration with Plutonium's major release builds. Team pinkHelium believes in serving well constructed deployment worthy platforms via its major release channels. Emerald is where more advanced features get tested before being accepted into a major release build.
 
 ### Objectives
 * Conceptualize a minimalistic UI/UX inspired by Google's Material Design. **(ACHIEVED)**
@@ -9,10 +9,12 @@
 * <<ADD MORE>>
 
 ### Version (Changelog)
-* ### ***1.0.1***
+* ### ***0.0.1***
     * Added a project component view. Clicking the edit button on a project card toggles the respective component view.
+    * Added support for Material Design Icons.
+    * Improved UI.
 
-* ### ***1.0.0*** 
+* ### ***0.0.0*** 
     *  Prepared initial project scaffolding.
 
 ### Stack
@@ -21,7 +23,7 @@
 ### Instructions
 Open a terminal instance.
 ```sh
-$ cd client && npm start
+$ cd client && ng build
 ```
 
 Open another terminal instance and navigate to the plutonium-emerald root directory.
