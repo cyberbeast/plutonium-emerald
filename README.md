@@ -12,7 +12,8 @@
 * ### ***0.0.1***
     * Added a project component view. Clicking the edit button on a project card toggles the respective component view.
     * Added support for Material Design Icons.
-    * Improved UI.
+    * Improved UI/UX.
+    * Added angular-router implementation. Screen/Process flow is smoother.
 
 * ### ***0.0.0*** 
     *  Prepared initial project scaffolding.
@@ -23,13 +24,13 @@
 ### Instructions
 Open a terminal instance.
 ```sh
-$ cd client && ng build
+$ cd client && npm install
+$ ng build
 ```
 
 Open another terminal instance and navigate to the plutonium-emerald root directory.
 ```sh
-$ cd server
-$ npm install
+$ cd server && npm install
 $ node app.js
 ```
 
