@@ -4,13 +4,13 @@
 </p>
 
 
-### Objectives
+## Objectives
 - [x] Conceptualize a minimalistic UI/UX inspired by Google's Material Design. **(ACHIEVED)**
 - [ ] Build a minimal front-end scaffolding in Angular2 to facilitate a robust backend. **(IN PROGRESS)**
 - [ ] Backend API compiler on demand.
 - [ ] <<ADD MORE>>
 
-### Version (Changelog)
+## Version (Changelog)
 * ### ***0.0.1***
     * Added a project component view. Clicking the edit button on a project card toggles the respective component view.
     * Added support for Material Design Icons.
@@ -20,14 +20,14 @@
 * ### ***0.0.0*** 
     *  Prepared initial project scaffolding.
 
-### Stack
+## Stack
 > The Emerald Stack is prone to changes due to its experimental nature. However, the following image can be used as a yardstick. Team pinkHelium is currently playing around with different technologies to put together the most appropriate stack for the cause. Bear with us if this section seems too volatile. We love the ever-changing playground of the web. :)
 
 <p align="center">
     <img src="https://docs.google.com/drawings/d/1yV-FcNkknzPuRIybjUT3yKvG6EuWBVnZgJvsuGoHgD0/pub?w=586&h=451">
 </p>
 
-### Instructions
+## Instructions
 Open a terminal instance.
 ```bash
 cd client && npm install
@@ -42,7 +42,7 @@ node app.js
 
 > Access http://localhost:3005 via a browser.
 
-### Contributers
+## Contributers
 > [pinkHelium][pinkHelium_Members]
 
 
