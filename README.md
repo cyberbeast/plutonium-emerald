@@ -23,7 +23,7 @@
 ### Instructions
 Open a terminal instance.
 ```sh
-$ cd client && npm start
+$ cd client && ng build
 ```
 
 Open another terminal instance and navigate to the plutonium-emerald root directory.
