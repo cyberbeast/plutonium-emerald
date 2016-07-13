@@ -26,7 +26,8 @@ import { ProjectsComponent } from "./projects.component";
         ProjectsComponent,
         MD_TOOLBAR_DIRECTIVES,
         MdIcon,
-        ROUTER_DIRECTIVES
+        ROUTER_DIRECTIVES,
+        MD_BUTTON_DIRECTIVES
     ],
     providers: [
         ProjectService,
@@ -36,5 +37,5 @@ import { ProjectsComponent } from "./projects.component";
 
 export class AppComponent {
     title = 'Plutonium'; //App Title
-    subtitle = "Emerald Prototype Build"; //App Subtitle 
+    subtitle = "emerald"; //App Subtitle 
 }

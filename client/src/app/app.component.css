@@ -7,3 +7,7 @@
 	        box-shadow: 0 8px 6px -6px #446CB3;
             z-index: 100;
 }
+
+.blUI-fab {
+    background: #446CB3;
+}
