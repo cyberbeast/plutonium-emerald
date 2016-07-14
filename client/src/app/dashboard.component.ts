@@ -11,6 +11,8 @@ import { MD_GRID_LIST_DIRECTIVES } from '@angular2-material/grid-list';
 import { MD_TOOLBAR_DIRECTIVES } from '@angular2-material/toolbar';
 // UI IMPORTS END>>>>>>>>>>>>>>>>>>>>>>>>>>
 
+import { AngularFire } from 'angularfire2';
+
 @Component({
     moduleId: module.id,
     selector:'dashboard',
@@ -29,7 +31,8 @@ import { MD_TOOLBAR_DIRECTIVES } from '@angular2-material/toolbar';
 
 export class DashboardComponent {
     constructor(
-        private router: Router
+        private router: Router,
+        public af: AngularFire
     ){}
 
     gotoProjectsView(){

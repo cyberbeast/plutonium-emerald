@@ -57,7 +57,8 @@ export class ProjectsComponent implements OnInit{
   // constructor
   constructor(
     private projectService: ProjectService,
-    private router: Router) { 
+    private router: Router,
+    public af: AngularFire) { 
   
     }
 

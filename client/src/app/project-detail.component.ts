@@ -51,7 +51,8 @@ export class ProjectDetailComponent implements OnInit, OnDestroy {
 
     constructor(
         private _route: ActivatedRoute,
-        private _af: AngularFire
+        private _af: AngularFire,
+        public af: AngularFire
     ) {}
 
     ngOnInit() {

@@ -17,6 +17,8 @@ import { ProjectService } from './project.service';
 import { ProjectsComponent } from "./projects.component";
 // DEPENDENCY IMPORTS END>>>>>>>>>>>>>>>>>>
 
+import { AngularFire } from 'angularfire2';
+
 @Component({
     moduleId: module.id,
     selector: 'app-root',
@@ -37,5 +39,9 @@ import { ProjectsComponent } from "./projects.component";
 
 export class AppComponent {
     title = 'Plutonium'; //App Title
-    subtitle = "emerald"; //App Subtitle 
+    subtitle = "emerald"; //App Subtitle
+
+    constructor(public af:AngularFire){
+        
+    } 
 }
