@@ -50,7 +50,14 @@ node app.js
 
 ## Contributers
 > [pinkHelium][pinkHelium_Members]
+> [cyberbeast][cyberbeast]
+> [diti][diti]
+> [seel][seel]
+
 
 
 [pinkHelium_Members]: https://github.com/orgs/pinkhelium/people
 [Plutonium2]: https://github.com/pinkhelium/plutonium2
+[cyberbeast]: https://github.com/cyberbeast
+[seel]: https://github.com/abinavseelan
+[diti]: https://github.com/rheaditi
