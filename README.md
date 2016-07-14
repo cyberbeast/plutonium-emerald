@@ -3,19 +3,25 @@
   <p align="center">Plutonium Emerald is a prototype build of <a href="https://github.com/pinkhelium/plutonium2">Plutonium2</a>. The Emerald build facilitates a bare minimum front-end scaffolding to ensure that back-end application logic can be experimented with here before integration with Plutonium's major release builds. Team pinkHelium believes in serving well constructed deployment worthy platforms via its major release channels. Emerald is where more advanced features get tested before being accepted into a major release build.</p>
 </p>
 
-
-## Objectives
+## Experiment Objectives
 - [x] Conceptualize a minimalistic UI/UX inspired by Google's Material Design. **(ACHIEVED)**
 - [ ] Build a minimal front-end scaffolding in Angular2 to facilitate a robust backend. **(IN PROGRESS)**
 - [ ] Backend API compiler on demand.
+- [x] Firebase integration. Decouple front-end from the server to improve reactivity.**(ACHIEVED! "Drop-the-mic")**
+- [ ] Github Authentication. DUH! :P 
 - [ ] <<ADD MORE>>
 
 ## Version (Changelog)
+* ### ***0.1.0***
+    * Firebase integration. No local data dependencies. Aww yeah! Two days worth of coding finally paid off.
+    * Formatted Object display in views to display real-time data.
+    * 
 * ### ***0.0.1***
     * Added a project component view. Clicking the edit button on a project card toggles the respective component view.
     * Added support for Material Design Icons.
     * Improved UI/UX.
     * Added angular-router implementation. Screen/Process flow is smoother.
+    * Mock Data service (deprecated)
 
 * ### ***0.0.0*** 
     *  Prepared initial project scaffolding.
@@ -28,6 +34,16 @@
 </p>
 
 ## Instructions
+Create a config.ts file in client/src/app/config with the following data.
+```ts
+export var FirebaseConfig = {
+    apiKey          :   "<<YOUR API KEY>>",
+    authDomain      :   "<<YOUR AUTHDOMAIN>>",
+    databaseURL     :   "<<YOUR DATABASEURL>>",
+    storageBucket   :   "<<YOUR STORAGEBUCKET>>"
+}
+```
+
 Open a terminal instance.
 ```bash
 cd client && npm install
@@ -44,7 +60,14 @@ node app.js
 
 ## Contributers
 > [pinkHelium][pinkHelium_Members]
+> [cyberbeast][cyberbeast]
+> [diti][diti]
+> [seel][seel]
+
 
 
 [pinkHelium_Members]: https://github.com/orgs/pinkhelium/people
 [Plutonium2]: https://github.com/pinkhelium/plutonium2
+[cyberbeast]: https://github.com/cyberbeast
+[seel]: https://github.com/abinavseelan
+[diti]: https://github.com/rheaditi
