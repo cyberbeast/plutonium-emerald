@@ -17,20 +17,30 @@
 </center>
 <br />
 
-<md-grid-list cols="3" rowHeight="4:3" gutterSize="80px" style="margin:0 100px 0 100px;">
-   <md-grid-tile *ngFor="let project of projects">
+
+<form (submit)="projects.push({name: newProjectName.value})">
+  <label for="newProjectName">Name</label><input #newProjectName>
+</form>
+
+<pre>
+{{ projects | async | json }}
+</pre>
+
+<md-grid-list cols="3" rowHeight="4:3" gutterSize="20px" style="margin:0 100px 0 100px;">
+   <md-grid-tile *ngFor="let project of projects | async">
      <md-card>
-       <md-card-title>{{project.name | uppercase}}</md-card-title>
-       <md-card-subtitle>API PROJECT</md-card-subtitle> <md-card-content><p>{{project.description}}</p></md-card-content>
+       <md-card-title>{{ project.name | uppercase }}</md-card-title>
+       <md-card-subtitle>API PROJECT</md-card-subtitle>
+       <!--<md-card-content><p>{{project.$key}}</p></md-card-content>-->
        <md-card-actions>
-        <button md-button (click)="onSelect(project)">EDIT</button>
-        <button md-button>DELETE</button>
+        <button md-button (click)="onSelect(project.$key)">EDIT</button>
+        <button md-button (click)="deleteProject(project.$key)">DELETE</button>
         </md-card-actions>
     </md-card>
    </md-grid-tile>
 </md-grid-list>
 
-<project-detail [project] = "selectedProject"></project-detail>
+<!--<project-detail></project-detail>-->
 
 
 

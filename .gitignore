@@ -3,3 +3,4 @@ client/node_modules/
 #config directories
 client/src/config/
 
+client/src/app/config/

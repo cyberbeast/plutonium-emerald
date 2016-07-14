@@ -18,7 +18,7 @@ const routes: RouterConfig = [
         component: ProjectsComponent
     },
     {
-        path: 'project-detail/:id',
+        path: 'project-detail/:key',
         component: ProjectDetailComponent
     }
 ]

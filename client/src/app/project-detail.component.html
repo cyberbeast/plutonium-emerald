@@ -1,4 +1,4 @@
-<div *ngIf="project">
+<div>
     <!--<div style="margin: 10px 10px 10px 10px;"></div>-->
     <center>
         <button md-mini-fab class="blUI-fab" (click)="goBack()">
@@ -15,11 +15,16 @@
     </center>
     <br />
 
+    <pre>
+    {{ project_functions | async | json }}
+    </pre>
+    
+
     <md-grid-list cols="3" rowHeight="4:3" gutterSize="80px" style="margin:0 100px 0 100px;">
-    <md-grid-tile *ngFor="let function of project.project_functions">
+    <md-grid-tile *ngFor="let function of project_functions | async">
         <md-card>
             <!--<md-card-subtitle>{{project.id}}</md-card-subtitle>-->
-            <md-card-title>{{function.name | uppercase}}</md-card-title>
+            <md-card-title>{{function.fname | uppercase}}</md-card-title>
             <md-card-content><p>{{function.description}}</p></md-card-content>
             <md-card-actions>
                 <button md-button>EDIT FN</button>

@@ -18,32 +18,48 @@ import { ProjectDetailComponent } from './project-detail.component';
 // DEPENDENCY IMPORTS END>>>>>>>>>>>>>>>>>>
 
 // DEV IMPORTS BEGIN>>>>>>>>>>>>>>>>>>>>>>> 
-import { PROJECTS } from './mock-projects';
+// import { PROJECTS } from './mock-projects';
 // DEV IMPORTS END>>>>>>>>>>>>>>>>>>>>>>>>>
+
+// Firebase IMPORTS BEGIN>>>>>>>>>>>>>>>>>>
+import { AngularFire, FirebaseListObservable } from 'angularfire2';
+import { Observable } from 'rxjs';
+import 'rxjs/add/operator/map';
+// Firebase IMPORTS END>>>>>>>>>>>>>>>>>>>>
 
 @Component({
   moduleId: module.id,
   selector: 'my-projects',
   templateUrl: 'projects.component.html',
   styleUrls: ['projects.component.css'],
-  directives: [MD_CARD_DIRECTIVES, MD_BUTTON_DIRECTIVES, MD_GRID_LIST_DIRECTIVES, MD_TOOLBAR_DIRECTIVES, ProjectDetailComponent, MdIcon],
-  providers:[MdIconRegistry]
+  directives: [
+    MD_CARD_DIRECTIVES,
+    MD_BUTTON_DIRECTIVES,
+    MD_GRID_LIST_DIRECTIVES,
+    MD_TOOLBAR_DIRECTIVES,
+    ProjectDetailComponent,
+    MdIcon
+  ],
+  providers:[
+    MdIconRegistry
+  ]
 })
 
 export class ProjectsComponent implements OnInit{
-  projects = PROJECTS; //projects property. DEFINED in data-structures.ts. POPULATED by mock-projects.ts.
-  selectedProject: Project; //selectedProject property. USED when user clicks on the edit button of a project card.
+  projects: Observable<any[]>; //projects property. DEFINED in data-structures.ts. POPULATED by mock-projects.ts.
+  selectedProjectName: string; //selectedProject property. USED when user clicks on the edit button of a project card.
 
   // onSelect method triggered by the click event of the Edit button on a project card.
-  onSelect(project: Project) {
-    this.selectedProject = project;
-    this.router.navigate(['/project-detail', this.selectedProject.id]);
+  onSelect(key: string) {
+    this.router.navigate(['/project-detail', key]);
   }
 
   // constructor
   constructor(
     private projectService: ProjectService,
-    private router: Router) { }
+    private router: Router) { 
+  
+    }
 
   // gotoDashboardView method. CALLED at the click event of the dashboard floating action button on the template.
   gotoDashboardView(){
@@ -52,11 +68,15 @@ export class ProjectsComponent implements OnInit{
   
   // Supporting method for the ngOnInit() operation. CALLED by ngOnInit.
   getProjects(){
-    this.projectService.getProjects().then(projects => this.projects = projects);
+    this.projects = this.projectService.getProjects();
   }
 
   // ngOnInit() method triggered at the initialization lifecycle hook. PROVIDED by angular2.
   ngOnInit(){
     this.getProjects();
+  }
+
+  deleteProject(key: string) {    
+    this.projectService.deleteProject(key); 
   }
 }

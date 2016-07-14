@@ -1,3 +1,14 @@
+export class Project_Functions {
+    name: string; // Name of API function
+    description: string; // Description of API function.
+    properties: {
+        code: string, // Source code for API function implementation.
+        endpoint: string,
+        type: string,
+        version: number
+    }
+}
+
 export class Project {
     // USED MEMBERS BEGIN>>>>>>>>>>>>
     id: number; //API Project ID
@@ -10,9 +21,5 @@ export class Project {
     // UNUSED MEMBERS END>>>>>>>>>>>>
 
     // List of functions associated with the parent Project object.
-    project_functions: [{
-          name: string, // Name of API function
-          description: string, // Description of API function.
-          code: string // Source code for API function implementation.
-    }]
+    project_functions: Project_Functions[];
 }

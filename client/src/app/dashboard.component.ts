@@ -34,6 +34,6 @@ export class DashboardComponent {
 
     gotoProjectsView(){
         this.router.navigate(['/projects']);
-
+                
     }
 }
