@@ -8,14 +8,14 @@
 - [ ] Build a minimal front-end scaffolding in Angular2 to facilitate a robust backend. **(IN PROGRESS)**
 - [ ] Backend API compiler on demand.
 - [x] Firebase integration. Decouple front-end from the server to improve reactivity.**(ACHIEVED! "Drop-the-mic")**
-- [ ] Github Authentication. DUH! :P 
+- [x] Github Authentication. DUH! :P **(ACHIEVED)**
 - [ ] <<ADD MORE>>
 
 ## Version (Changelog)
 * ### ***0.1.0***
     * Firebase integration. No local data dependencies. Aww yeah! Two days worth of coding finally paid off.
     * Formatted Object display in views to display real-time data.
-    * 
+    * Github Authentication support.
 * ### ***0.0.1***
     * Added a project component view. Clicking the edit button on a project card toggles the respective component view.
     * Added support for Material Design Icons.
