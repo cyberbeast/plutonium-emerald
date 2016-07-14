@@ -34,6 +34,16 @@
 </p>
 
 ## Instructions
+Create a config.ts file in client/src/app/config with the following data.
+```ts
+export var FirebaseConfig = {
+    apiKey          :   "<<YOUR API KEY>>",
+    authDomain      :   "<<YOUR AUTHDOMAIN>>",
+    databaseURL     :   "<<YOUR DATABASEURL>>",
+    storageBucket   :   "<<YOUR STORAGEBUCKET>>"
+}
+```
+
 Open a terminal instance.
 ```bash
 cd client && npm install
