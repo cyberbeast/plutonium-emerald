@@ -2,16 +2,26 @@
   .example-fill-remaining-space {
     flex: 1 1 auto;
   }
+
+  #profile_pic_mini {
+	border-radius:50%;
+	width: 30px;
+  /*display: block;*/
+  /*  margin: auto;*/
+  vertical-align:middle
+}
 </style>
 
 <md-toolbar class="blUI-toolbar-primary">
   <span><h1>{{title | uppercase}}</h1></span>
   <span class="example-fill-remaining-space"></span>
   <span><h3>{{subtitle}}</h3></span>&nbsp;
-  <span *ngIf="!(af.auth | async)"><button md-raised-button class="blUI-fab" (click)="af.auth.login()"><strong>LOG IN</strong></button>&nbsp;</span>  
-  <span *ngIf="af.auth | async">{{ (af.auth | async).auth.displayName }}<button md-raised-button class="blUI-fab" (click)="af.auth.logout()"><strong>LOG OUT</strong>  </button>&nbsp;</span>
+  <span class="example-fill-remaining-space"></span>
   <span><a md-raised-button class="blUI-fab" target="_blank" href="https://github.com/cyberbeast/plutonium-emerald/issues"><strong>ISSUES</strong></a></span>&nbsp;
-  <span><a md-raised-button class="blUI-fab" target="_blank" href="https://github.com/cyberbeast/plutonium-emerald"><strong>SOURCE</strong></a></span>
+  <span><a md-raised-button class="blUI-fab" target="_blank" href="https://github.com/cyberbeast/plutonium-emerald"><strong>SOURCE</strong></a></span>&nbsp;
+  <span *ngIf="!(af.auth | async)"><button md-raised-button class="blUI-fab" (click)="af.auth.login()"><strong>LOG IN</strong></button>&nbsp;</span>  
+  <span *ngIf="af.auth | async"><button md-raised-button class="blUI-fab" (click)="af.auth.logout()"><img id="profile_pic_mini" src="{{ (af.auth | async).auth.photoURL }}">&nbsp;<strong>LOG OUT</strong></button></span>
+  <!--<span *ngIf="af.auth | async"></span>-->
 </md-toolbar>
 <br>
 

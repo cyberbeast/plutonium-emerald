@@ -39,7 +39,7 @@ import { AngularFire } from 'angularfire2';
 
 export class AppComponent {
     title = 'Plutonium'; //App Title
-    subtitle = "emerald"; //App Subtitle
+    subtitle = "Emerald Prototype Build"; //App Subtitle
 
     constructor(public af:AngularFire){
         
