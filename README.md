@@ -12,18 +12,18 @@
 - [ ] <<ADD MORE>>
 
 ## Version (Changelog)
-* ### ***0.1.0***
+* ***0.1.0***
     * Firebase integration. No local data dependencies. Aww yeah! Two days worth of coding finally paid off.
     * Formatted Object display in views to display real-time data.
     * Github Authentication support.
-* ### ***0.0.1***
+* ### ***0.0.4***
     * Added a project component view. Clicking the edit button on a project card toggles the respective component view.
     * Added support for Material Design Icons.
     * Improved UI/UX.
     * Added angular-router implementation. Screen/Process flow is smoother.
     * Mock Data service (deprecated)
 
-* ### ***0.0.0*** 
+* ### ***0.0.1*** 
     *  Prepared initial project scaffolding.
 
 ## Stack
