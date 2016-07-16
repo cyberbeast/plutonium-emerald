@@ -58,7 +58,7 @@ node app.js
 
 > Access http://localhost:3005 via a browser.
 
-## Contributers
+## Contributors
 > [pinkHelium][pinkHelium_Members]
 > [cyberbeast][cyberbeast]
 > [diti][diti]
