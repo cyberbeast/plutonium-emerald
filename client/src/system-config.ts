@@ -9,7 +9,10 @@
 const map: any = {
   '@angular2-material': 'vendor/@angular2-material',
   'firebase': 'vendor/firebase/firebase.js',
-  'angularfire2': 'vendor/angularfire2'
+  'angularfire2': 'vendor/angularfire2',
+  'materialize': 'vendor/materialize-css',
+  'angular2-materialize': 'vendor/angular2-materialize',
+  'jquery': 'vendor/jquery'
 };
 
 /** User packages configuration. */
@@ -17,6 +20,15 @@ const packages: any = {
   angularfire2: {
     defaultExtension: 'js',
     main: 'angularfire2.js'
+  },
+  'materialize': {
+    format: 'global',
+    main: 'dist/js/materialize',
+    defaultExtension: 'js'
+  },
+  'angular2-materialize': {
+    main: 'dist/index',
+    defaultExtension: 'js'
   }
 };
 

@@ -18,18 +18,22 @@ import { ProjectsComponent } from "./projects.component";
 // DEPENDENCY IMPORTS END>>>>>>>>>>>>>>>>>>
 
 import { AngularFire } from 'angularfire2';
+import {MaterializeDirective} from "angular2-materialize";
+
 
 @Component({
     moduleId: module.id,
     selector: 'app-root',
     templateUrl: 'app.component.html',
-    styleUrls: ['app.component.css'],
+    styleUrls: [
+        'app.component.css'],
     directives: [
         ProjectsComponent,
         MD_TOOLBAR_DIRECTIVES,
         MdIcon,
         ROUTER_DIRECTIVES,
-        MD_BUTTON_DIRECTIVES
+        MD_BUTTON_DIRECTIVES,
+        MaterializeDirective
     ],
     providers: [
         ProjectService,
@@ -39,7 +43,7 @@ import { AngularFire } from 'angularfire2';
 
 export class AppComponent {
     title = 'Plutonium'; //App Title
-    subtitle = "Emerald Prototype Build"; //App Subtitle
+    subtitle = "Emerald"; //App Subtitle
 
     constructor(public af:AngularFire){
         

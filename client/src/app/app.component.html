@@ -6,9 +6,26 @@
   #profile_pic_mini {
 	  border-radius:50%;
 	  width: 30px;
-    vertical-align:middle
+    /*vertical-align:middle*/
   }
 </style>
+
+  <div class="navbar-fixed">
+    <nav>
+      <div class="nav-wrapper blue darken-1">
+        &nbsp;
+        <span>{{title | uppercase}}</span>
+        <span>{{subtitle | uppercase}}</span>
+        <!--<img id="profile_pic_mini" src="{{ (af.auth | async).auth.photoURL }}">-->
+        
+        <ul class="right hide-on-med-and-down">
+          <li><a materialize="tooltip" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click here to open our Github repo" href="https://github.com/cyberbeast/plutonium-emerald" target="_blank"><i class="material-icons right">share</i>SOURCE CODE</a></li>
+          <li><a materialize="tooltip" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Report Issues" href="https://github.com/cyberbeast/plutonium-emerald/issues" target="_blank"><i class="material-icons right">report_problem</i>REPORT ISSUES</a></li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+  
 
 <md-toolbar class="blUI-toolbar-primary">
   <span><h1>{{title | uppercase}}</h1></span>
@@ -23,9 +40,24 @@
 </md-toolbar>
 <br>
 
-<pre>
-{{ af.auth | async | json }}
-</pre>
+<a materialize="tooltip" class="btn tooltipped blue accent-3" data-position="bottom" data-delay="50" data-tooltip="I am tooltip">Hover me!</a>
+
+<a materialize="leanModal" [materializeParams]="[{dismissible: false}]" class="waves-effect waves-light btn modal-trigger blue accent-3" href="#modal1">AUTH Object</a>
+<!-- Modal Structure -->
+<div id="modal1" class="modal">
+  <div class="modal-content">
+  <pre class="wrapped">
+  {{ af.auth | async | json }}
+  </pre>
+  </div>
+  <div class="modal-footer">
+    <button class=" modal-action modal-close waves-effect waves-green btn-flat">Close</button>
+  </div>
+</div>
+
+<!--<div id="modal1">
+
+</div>-->
 
 <!--<nav>
  <a [routerLink]="['/projects']">Projects</a>

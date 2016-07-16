@@ -19,7 +19,11 @@ module.exports = function(defaults) {
       '@angular2-material/**/*',
       // below are the AngularFire entries
       'angularfire2/**/*.js',
-      'firebase/*.js'
+      'firebase/*.js',
+      // materialize
+      'jquery/dist/*',
+      'angular2-materialize/dist/*',
+      'materialize-css/dist/**/*'
     ]
   });
 };

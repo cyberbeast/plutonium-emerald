@@ -22,6 +22,8 @@ import 'rxjs/add/operator/map';
 import { AngularFire, FirebaseListObservable } from 'angularfire2';
 // Firebase IMPORTS END>>>>>>>>>>>>>>>>>>>>
 
+import {MaterializeDirective} from "angular2-materialize";
+
 @Component({
     moduleId: module.id,
     selector: 'project-detail',
@@ -32,7 +34,8 @@ import { AngularFire, FirebaseListObservable } from 'angularfire2';
         MD_BUTTON_DIRECTIVES, 
         MD_GRID_LIST_DIRECTIVES, 
         MD_TOOLBAR_DIRECTIVES, 
-        MdIcon
+        MdIcon,
+        MaterializeDirective
     ],
     providers:[ 
         MdIconRegistry

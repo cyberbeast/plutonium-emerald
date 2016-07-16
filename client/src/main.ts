@@ -12,6 +12,7 @@ import {
   AuthProviders
 } from 'angularfire2';
 import { FirebaseConfig, FirebaseAuthConfig } from './app/config/firebase-config';
+import "angular2-materialize";
 
 // var firebase_config = require('./config/firebase_config.json');
 
