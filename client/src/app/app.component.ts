@@ -1,14 +1,15 @@
 // ANGULAR2 CORE IMPORTS BEGIN>>>>>>>>>>>>>
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ROUTER_DIRECTIVES } from '@angular/router';
 // ANGULAR2 CORE IMPORTS END>>>>>>>>>>>>>>>
 
 // UI IMPORTS BEGIN>>>>>>>>>>>>>>>>>>>>>>>>
 import { MdIcon, MdIconRegistry } from '@angular2-material/icon';
-import { MD_CARD_DIRECTIVES } from '@angular2-material/card';
-import { MD_BUTTON_DIRECTIVES } from '@angular2-material/button';
-import { MD_GRID_LIST_DIRECTIVES } from '@angular2-material/grid-list';
-import { MD_TOOLBAR_DIRECTIVES } from '@angular2-material/toolbar';
+// import { MD_CARD_DIRECTIVES } from '@angular2-material/card';
+// import { MD_BUTTON_DIRECTIVES } from '@angular2-material/button';
+// import { MD_GRID_LIST_DIRECTIVES } from '@angular2-material/grid-list';
+// import { MD_TOOLBAR_DIRECTIVES } from '@angular2-material/toolbar';
+import { MaterializeDirective } from "angular2-materialize";
 // UI IMPORTS END>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 // DEPENDENCY IMPORTS BEGIN>>>>>>>>>>>>>>>>
@@ -17,9 +18,12 @@ import { ProjectService } from './project.service';
 import { ProjectsComponent } from "./projects.component";
 // DEPENDENCY IMPORTS END>>>>>>>>>>>>>>>>>>
 
-import { AngularFire } from 'angularfire2';
-import {MaterializeDirective} from "angular2-materialize";
+// Firebase IMPORTS BEGIN>>>>>>>>>>>>>>>>>>
+import { AngularFire, FirebaseListObservable } from 'angularfire2';
+// Firebase IMPORTS END>>>>>>>>>>>>>>>>>>>>
 
+import { DebugService } from './debug.service';
+import { Observable, Subscription } from 'rxjs';
 
 @Component({
     moduleId: module.id,
@@ -29,23 +33,44 @@ import {MaterializeDirective} from "angular2-materialize";
         'app.component.css'],
     directives: [
         ProjectsComponent,
-        MD_TOOLBAR_DIRECTIVES,
         MdIcon,
         ROUTER_DIRECTIVES,
-        MD_BUTTON_DIRECTIVES,
         MaterializeDirective
     ],
     providers: [
         ProjectService,
-        MdIconRegistry
+        MdIconRegistry,
+        DebugService
     ]
 })
 
-export class AppComponent {
+export class AppComponent implements OnDestroy, OnInit{
     title = 'Plutonium'; //App Title
     subtitle = "Emerald"; //App Subtitle
+    projectObject: any[];
+    subscription: Subscription;
 
-    constructor(public af:AngularFire){
-        
-    } 
+    constructor(
+        public af: AngularFire,
+        private debugService: DebugService){
+
+        }
+
+    clicky(){
+        console.log(this.projectObject);
+    }
+
+    ngOnDestroy() {
+        // prevent memory leak when component destroyed
+        this.subscription.unsubscribe();
+    }
+
+    ngOnInit() {
+        this.debugService.projectListRetreived$.subscribe(
+            res => {
+                this.projectObject.push(res);
+            }
+        );        
+    }
+    
 }

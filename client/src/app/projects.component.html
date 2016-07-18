@@ -3,64 +3,45 @@
   <!-- Compiled and minified JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
 
-<!--<div style="margin: 10px 10px 10px 10px;"></div>-->
-<center>
-  <button md-mini-fab class="blUI-fab" (click)="gotoDashboardView()">
+  <!--<div style="margin: 10px 10px 10px 10px;"></div>-->
+  <center>
+    <button md-mini-fab class="blUI-fab" (click)="gotoDashboardView()">
     <md-icon class="md-24">dashboard</md-icon>
-  </button>
-  &nbsp;
-  <button md-fab class="blUI-fab">
+  </button> &nbsp;
+    <button md-fab class="blUI-fab">
     <md-icon class="md-24">add</md-icon>
-  </button>
-  &nbsp;
-  <button md-mini-fab class="blUI-fab">
+  </button> &nbsp;
+    <button md-mini-fab class="blUI-fab" (click)="onClicky()">
     <md-icon class="md-24">refresh</md-icon>
-  </button>
-  &nbsp;
-</center>
-<br />
+  </button> &nbsp;
+  </center>
+
+  <br />
 
 
-<form (submit)="projects.push({name: newProjectName.value})">
-  <label for="newProjectName">Name</label><input #newProjectName>
-</form>
+  <form (submit)="projects.push({name: newProjectName.value})">
+    <label for="newProjectName">Name</label><input #newProjectName>
+  </form>
 
-<pre>
-{{ projects | async | json }}
-</pre>
+  <pre>
+    {{ projects | async | json }}
+  </pre>
 
-<md-grid-list cols="3" rowHeight="4:3" gutterSize="20px" style="margin:0 100px 0 100px;">
-   <md-grid-tile *ngFor="let project of projects | async">
-     <md-card>
-       <md-card-title>{{ project.name | uppercase }}</md-card-title>
-       <md-card-subtitle>API PROJECT</md-card-subtitle>
-       <!--<md-card-content><p>{{project.$key}}</p></md-card-content>-->
-       <md-card-actions>
-        <button md-button (click)="onSelect(project.$key)">EDIT</button>
-        <button md-button (click)="deleteProject(project.$key)">DELETE</button>
-        </md-card-actions>
-    </md-card>
-   </md-grid-tile>
-</md-grid-list>
-
-<div class="row">
-  <div class="col s12 m4" *ngFor="let project of projects | async">
-    <div class="card">
-      <div class="card-content">
-        <span class="card-title">{{ project.name | uppercase }}</span>
-        <p>I am a very simple card. I am good at containing small bits of information.
-        I am convenient because I require little markup to use effectively.</p>
-      </div>
-      <div class="card-action">
-        <button class="waves-effect waves-light btn">EDIT</button>
-        <button class="waves-effect waves-light btn">DELETE</button>
+  <div class="row">
+    <div class="col s12 m4" *ngFor="let project of projects | async">
+      <div class="card">
+        <div class="card-content">
+          <span class="card-title">{{ project.name | uppercase }}</span>
+          <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little
+            markup to use effectively.</p>
+            <!--<p>{{ project.description }}</p>-->
+        </div>
+        <div class="card-action">
+          <button class="waves-effect waves-light btn blue accent-2" (click)="onSelect(project.$key)">EDIT</button>
+          <button class="waves-effect waves-light btn blue accent-2" (click)="deleteProject(project.$key)">DELETE</button>
+        </div>
       </div>
     </div>
   </div>
+  <!--<project-detail></project-detail>-->
 </div>
-<!--<project-detail></project-detail>-->
-</div>
-
-
-
-

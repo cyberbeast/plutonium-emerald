@@ -11,7 +11,7 @@ const routes: RouterConfig = [
     },
     {
         path: 'dashboard',
-        component: DashboardComponent
+        component: DashboardComponent,
     },
     {
         path: 'projects',

@@ -1,66 +1,67 @@
 <style>
-  .example-fill-remaining-space {
-    flex: 1 1 auto;
-  }
-
   #profile_pic_mini {
-	  border-radius:50%;
-	  width: 30px;
-    /*vertical-align:middle*/
+    border-radius: 50%;
+    height: 62px;
   }
 </style>
 
-  <div class="navbar-fixed">
-    <nav>
-      <div class="nav-wrapper blue darken-1">
-        &nbsp;
-        <span>{{title | uppercase}}</span>
-        <span>{{subtitle | uppercase}}</span>
-        <!--<img id="profile_pic_mini" src="{{ (af.auth | async).auth.photoURL }}">-->
-        
-        <ul class="right hide-on-med-and-down">
-          <li><a materialize="tooltip" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click here to open our Github repo" href="https://github.com/cyberbeast/plutonium-emerald" target="_blank"><i class="material-icons right">share</i>SOURCE CODE</a></li>
-          <li><a materialize="tooltip" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Report Issues" href="https://github.com/cyberbeast/plutonium-emerald/issues" target="_blank"><i class="material-icons right">report_problem</i>REPORT ISSUES</a></li>
-        </ul>
-      </div>
-    </nav>
-  </div>
-  
+<div class="navbar-fixed">
+  <nav>
+    <div class="nav-wrapper blue darken-1">
+      &nbsp;
+      <span style="font-weight:bolder; font-size:250%;">{{title | uppercase}}</span>
+      <!--<span style="font-weight:300; font-size:160%;">{{subtitle | uppercase}}</span>-->
 
-<md-toolbar class="blUI-toolbar-primary">
-  <span><h1>{{title | uppercase}}</h1></span>
-  <span class="example-fill-remaining-space"></span>
-  <span><h3>{{subtitle}}</h3></span>&nbsp;
-  <span class="example-fill-remaining-space"></span>
-  <span><a md-raised-button class="blUI-fab" target="_blank" href="https://github.com/cyberbeast/plutonium-emerald/issues"><strong>ISSUES</strong></a></span>&nbsp;
-  <span><a md-raised-button class="blUI-fab" target="_blank" href="https://github.com/cyberbeast/plutonium-emerald"><strong>SOURCE</strong></a></span>&nbsp;
-  <span *ngIf="!(af.auth | async)"><button md-raised-button class="blUI-fab" (click)="af.auth.login()"><strong>LOG IN</strong></button>&nbsp;</span>  
-  <span *ngIf="af.auth | async"><button md-raised-button class="blUI-fab" (click)="af.auth.logout()"><img id="profile_pic_mini" src="{{ (af.auth | async).auth.photoURL }}">&nbsp;<strong>LOG OUT</strong></button></span>
-  <!--<span *ngIf="af.auth | async"></span>-->
-</md-toolbar>
+      <a class="brand-logo center" (click)="af.auth.logout()"><img *ngIf="af.auth | async" id="profile_pic_mini" src="{{ (af.auth | async).auth.photoURL }}" materialize="tooltip"
+          class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click here to log out! "></a>
+
+      <ul class="right hide-on-med-and-down">
+        <li>
+          <a materialize="tooltip" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Click here to open our Github repo"
+            href="https://github.com/cyberbeast/plutonium-emerald" target="_blank"><i class="material-icons right">share</i>SOURCE CODE</a>
+        </li>
+        <li>
+          <a materialize="tooltip" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Report Issues" href="https://github.com/cyberbeast/plutonium-emerald/issues"
+            target="_blank"><i class="material-icons right">report_problem</i>REPORT ISSUES</a>
+        </li>
+        <li *ngIf="!(af.auth | async)">
+          <button class="waves-effect waves-light btn modal-trigger blue accent-2" (click)="af.auth.login()">LOG IN</button>
+        </li>
+        &nbsp; &nbsp;
+      </ul>
+    </div>
+  </nav>
+</div>
 <br>
 
-<a materialize="tooltip" class="btn tooltipped blue accent-3" data-position="bottom" data-delay="50" data-tooltip="I am tooltip">Hover me!</a>
+<button materialize="leanModal" [materializeParams]="[{dismissible: false}]" class="waves-effect waves-light btn modal-trigger blue accent-3"
+  href="#modal1">AUTH Object</button>
 
-<a materialize="leanModal" [materializeParams]="[{dismissible: false}]" class="waves-effect waves-light btn modal-trigger blue accent-3" href="#modal1">AUTH Object</a>
-<!-- Modal Structure -->
 <div id="modal1" class="modal">
   <div class="modal-content">
-  <pre class="wrapped">
-  {{ af.auth | async | json }}
-  </pre>
+    <pre class="wrapped">
+      {{ af.auth | async | json }}
+    </pre>
   </div>
   <div class="modal-footer">
-    <button class=" modal-action modal-close waves-effect waves-green btn-flat">Close</button>
+    <button class=" modal-action modal-close waves-effect waves-light btn blue accent-2">Close</button>
   </div>
 </div>
 
-<!--<div id="modal1">
+<button materialize="leanModal" [materializeParams]="[{dismissible: false}]" class="waves-effect waves-light btn modal-trigger blue accent-3"
+  href="#modal2">PROJECT Object</button>
 
-</div>-->
+<div id="modal2" class="modal">
+  <div class="modal-content">
+    <pre class="wrapped">
+      {{ projectObject | async | json }}
+    </pre>
+  </div>
+  <div class="modal-footer">
+    <button class=" modal-action modal-close waves-effect waves-light btn blue accent-2">Close</button>
+  </div>
+</div>
 
-<!--<nav>
- <a [routerLink]="['/projects']">Projects</a>
- <a [routerLink]="['/dashboard']">Dashboard</a>
-</nav>-->
-  <router-outlet></router-outlet>
+<button (click)="clicky()">CLICKY</button>
+
+<router-outlet></router-outlet>

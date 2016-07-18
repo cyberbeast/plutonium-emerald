@@ -5,10 +5,10 @@ import { Router } from '@angular/router';
 
 // UI IMPORTS BEGIN>>>>>>>>>>>>>>>>>>>>>>>>
 import { MdIcon, MdIconRegistry } from '@angular2-material/icon';
-import { MD_CARD_DIRECTIVES } from '@angular2-material/card';
-import { MD_BUTTON_DIRECTIVES } from '@angular2-material/button';
-import { MD_GRID_LIST_DIRECTIVES } from '@angular2-material/grid-list';
-import { MD_TOOLBAR_DIRECTIVES } from '@angular2-material/toolbar';
+// import { MD_CARD_DIRECTIVES } from '@angular2-material/card';
+// import { MD_BUTTON_DIRECTIVES } from '@angular2-material/button';
+// import { MD_GRID_LIST_DIRECTIVES } from '@angular2-material/grid-list';
+// import { MD_TOOLBAR_DIRECTIVES } from '@angular2-material/toolbar';
 // UI IMPORTS END>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 // DEPENDENCY IMPORTS BEGIN>>>>>>>>>>>>>>>>
@@ -17,15 +17,13 @@ import { ProjectService } from './project.service';
 import { ProjectDetailComponent } from './project-detail.component';
 // DEPENDENCY IMPORTS END>>>>>>>>>>>>>>>>>>
 
-// DEV IMPORTS BEGIN>>>>>>>>>>>>>>>>>>>>>>> 
-// import { PROJECTS } from './mock-projects';
-// DEV IMPORTS END>>>>>>>>>>>>>>>>>>>>>>>>>
-
 // Firebase IMPORTS BEGIN>>>>>>>>>>>>>>>>>>
 import { AngularFire, FirebaseListObservable } from 'angularfire2';
 import { Observable } from 'rxjs';
 import 'rxjs/add/operator/map';
 // Firebase IMPORTS END>>>>>>>>>>>>>>>>>>>>
+
+import { DebugService } from './debug.service';
 
 @Component({
   moduleId: module.id,
@@ -33,51 +31,59 @@ import 'rxjs/add/operator/map';
   templateUrl: 'projects.component.html',
   styleUrls: ['projects.component.css'],
   directives: [
-    MD_CARD_DIRECTIVES,
-    MD_BUTTON_DIRECTIVES,
-    MD_GRID_LIST_DIRECTIVES,
-    MD_TOOLBAR_DIRECTIVES,
     ProjectDetailComponent,
     MdIcon
   ],
-  providers:[
-    MdIconRegistry
+  providers: [
+    MdIconRegistry,
+    DebugService
   ]
 })
 
-export class ProjectsComponent implements OnInit{
+export class ProjectsComponent implements OnInit {
   projects: Observable<any[]>; //projects property. DEFINED in data-structures.ts. POPULATED by mock-projects.ts.
   selectedProjectName: string; //selectedProject property. USED when user clicks on the edit button of a project card.
 
   // onSelect method triggered by the click event of the Edit button on a project card.
   onSelect(key: string) {
     this.router.navigate(['/project-detail', key]);
+    // this.debugService.announceProjectsList("somethingishere");
+  }
+
+  onClicky(key: string) {
+    // this.router.navigate(['/project-detail', key]);
+    this.debugService.announceProjectsList("something");
+    // console.dir(this.projects);
+    // alert("SET");
   }
 
   // constructor
   constructor(
     private projectService: ProjectService,
     private router: Router,
-    public af: AngularFire) { 
-  
-    }
+    public af: AngularFire,
+    private debugService: DebugService) {
+
+  }
 
   // gotoDashboardView method. CALLED at the click event of the dashboard floating action button on the template.
-  gotoDashboardView(){
+  gotoDashboardView() {
     this.router.navigate(['']);
   }
-  
+
   // Supporting method for the ngOnInit() operation. CALLED by ngOnInit.
-  getProjects(){
+  getProjects() {
     this.projects = this.projectService.getProjects();
+    this.debugService.announceProjectsList(this.projectService.getProjects());
+
   }
 
   // ngOnInit() method triggered at the initialization lifecycle hook. PROVIDED by angular2.
-  ngOnInit(){
+  ngOnInit() {
     this.getProjects();
   }
 
-  deleteProject(key: string) {    
-    this.projectService.deleteProject(key); 
+  deleteProject(key: string) {
+    this.projectService.deleteProject(key);
   }
 }
