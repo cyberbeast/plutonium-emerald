@@ -5,14 +5,15 @@ import { ActivatedRoute } from '@angular/router';
 
 // UI IMPORTS BEGIN>>>>>>>>>>>>>>>>>>>>>>>>
 import { MdIcon, MdIconRegistry } from '@angular2-material/icon';
-import { MD_CARD_DIRECTIVES } from '@angular2-material/card';
-import { MD_BUTTON_DIRECTIVES } from '@angular2-material/button';
-import { MD_GRID_LIST_DIRECTIVES } from '@angular2-material/grid-list';
-import { MD_TOOLBAR_DIRECTIVES } from '@angular2-material/toolbar';
+// import { MD_CARD_DIRECTIVES } from '@angular2-material/card';
+// import { MD_BUTTON_DIRECTIVES } from '@angular2-material/button';
+// import { MD_GRID_LIST_DIRECTIVES } from '@angular2-material/grid-list';
+// import { MD_TOOLBAR_DIRECTIVES } from '@angular2-material/toolbar';
 // UI IMPORTS END>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 // DEPENDENCY IMPORTS BEGIN>>>>>>>>>>>>>>>>
 import { Project, Project_Functions } from './data-structures';
+import { DebugService } from './debug.service';
 // DEPENDENCY IMPORTS END>>>>>>>>>>>>>>>>>>
 
 import { Observable } from 'rxjs';
@@ -30,10 +31,6 @@ import {MaterializeDirective} from "angular2-materialize";
     templateUrl: 'project-detail.component.html',
     styleUrls:['project-detail.component.css'],
     directives: [
-        MD_CARD_DIRECTIVES,
-        MD_BUTTON_DIRECTIVES, 
-        MD_GRID_LIST_DIRECTIVES, 
-        MD_TOOLBAR_DIRECTIVES, 
         MdIcon,
         MaterializeDirective
     ],
@@ -43,19 +40,15 @@ import {MaterializeDirective} from "angular2-materialize";
 })
 
 export class ProjectDetailComponent implements OnInit, OnDestroy {
-    
-    // // Inputs received directly from the AppComponent. 
-    // @Input()
-    // selectedProjectName: string; //selectedProjectID can be set explicitly - Fir example, user directly types the URL for /project-detail/name.
     sub: any;
     project_functions: Observable<any>;
-    // selected_name: FirebaseObjectObservable<any>;
     
 
     constructor(
         private _route: ActivatedRoute,
         private _af: AngularFire,
-        public af: AngularFire
+        public af: AngularFire,
+        private debugService: DebugService
     ) {}
 
     ngOnInit() {
@@ -69,7 +62,10 @@ export class ProjectDetailComponent implements OnInit, OnDestroy {
                     const filtered = items.filter(item => item.pkey === key);
                     return filtered;
                 });
+                
             });
+        this.debugService.announceProjectFunctionsList(this.project_functions);
+
     }
     ngOnDestroy() {
         this.sub.unsubscribe();
@@ -78,13 +74,6 @@ export class ProjectDetailComponent implements OnInit, OnDestroy {
     // navigation method for click event of the back button
     goBack() {
         console.log("Going back");
-        // console.log(this.selectedProjectName);
         window.history.back();
     }
-
-    // getFunctions() {
-    //     this.project_functions = this.projectService.getProject(this.selectedProjectName);
-    //         // console.log("Initialized");
-    //         console.dir("Output is: " + this.project_functions);
-    // }
 }

@@ -73,7 +73,7 @@ export class ProjectsComponent implements OnInit {
   // Supporting method for the ngOnInit() operation. CALLED by ngOnInit.
   getProjects() {
     this.projects = this.projectService.getProjects();
-    this.debugService.announceProjectsList(this.projectService.getProjects());
+    this.debugService.announceProjectsList(this.projects);
 
   }
 

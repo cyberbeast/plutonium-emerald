@@ -15,7 +15,7 @@ import { MaterializeDirective } from "angular2-materialize";
 // DEPENDENCY IMPORTS BEGIN>>>>>>>>>>>>>>>>
 import { Project } from './data-structures';
 import { ProjectService } from './project.service';
-import { ProjectsComponent } from "./projects.component";
+// import { ProjectsComponent } from "./projects.component";
 // DEPENDENCY IMPORTS END>>>>>>>>>>>>>>>>>>
 
 // Firebase IMPORTS BEGIN>>>>>>>>>>>>>>>>>>
@@ -32,7 +32,7 @@ import { Observable, Subscription } from 'rxjs';
     styleUrls: [
         'app.component.css'],
     directives: [
-        ProjectsComponent,
+        // ProjectsComponent,
         MdIcon,
         ROUTER_DIRECTIVES,
         MaterializeDirective
@@ -48,6 +48,7 @@ export class AppComponent implements OnDestroy, OnInit {
     title = 'Plutonium'; //App Title
     subtitle = "Emerald"; //App Subtitle
     projectObject: Observable<any[]>;
+    projectFunctionObject: Observable<any[]>;
     subscription: Subscription;
 
     constructor(
@@ -66,9 +67,16 @@ export class AppComponent implements OnDestroy, OnInit {
     }
 
     ngOnInit() {
-        this.debugService.projectListRetreived$.subscribe(
+        this.debugService.projectListRetrieved$.subscribe(
             res => {
                 this.projectObject = res;
+            }
+        );
+        
+        this.debugService.projectFunctionListRetrieved$.subscribe(
+            result => {
+                this.projectFunctionObject = result;
+                console.log("CAPTURED");
             }
         );
     }
