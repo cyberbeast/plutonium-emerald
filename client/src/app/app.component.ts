@@ -44,19 +44,19 @@ import { Observable, Subscription } from 'rxjs';
     ]
 })
 
-export class AppComponent implements OnDestroy, OnInit{
+export class AppComponent implements OnDestroy, OnInit {
     title = 'Plutonium'; //App Title
     subtitle = "Emerald"; //App Subtitle
-    projectObject: any[];
+    projectObject: Observable<any[]>;
     subscription: Subscription;
 
     constructor(
         public af: AngularFire,
-        private debugService: DebugService){
+        private debugService: DebugService) {
 
-        }
+    }
 
-    clicky(){
+    clicky() {
         console.log(this.projectObject);
     }
 
@@ -68,9 +68,9 @@ export class AppComponent implements OnDestroy, OnInit{
     ngOnInit() {
         this.debugService.projectListRetreived$.subscribe(
             res => {
-                this.projectObject.push(res);
+                this.projectObject = res;
             }
-        );        
+        );
     }
-    
+
 }

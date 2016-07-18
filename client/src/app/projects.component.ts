@@ -35,8 +35,7 @@ import { DebugService } from './debug.service';
     MdIcon
   ],
   providers: [
-    MdIconRegistry,
-    DebugService
+    MdIconRegistry
   ]
 })
 

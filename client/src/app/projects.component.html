@@ -4,7 +4,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
 
   <!--<div style="margin: 10px 10px 10px 10px;"></div>-->
-  <center>
+  <!--<center>
     <button md-mini-fab class="blUI-fab" (click)="gotoDashboardView()">
     <md-icon class="md-24">dashboard</md-icon>
   </button> &nbsp;
@@ -14,27 +14,40 @@
     <button md-mini-fab class="blUI-fab" (click)="onClicky()">
     <md-icon class="md-24">refresh</md-icon>
   </button> &nbsp;
-  </center>
+  </center>-->
 
   <br />
 
 
-  <form (submit)="projects.push({name: newProjectName.value})">
-    <label for="newProjectName">Name</label><input #newProjectName>
-  </form>
 
-  <pre>
-    {{ projects | async | json }}
-  </pre>
 
   <div class="row">
+    <div class="col s12 m4">
+      <div class="card">
+                    <div class="card-image">
+              <img src="https://image.freepik.com/free-vector/abstract-blue-background_1048-1511.jpg" style="height:250px;">
+              <span class="card-title">Card Title</span>
+            </div>
+        <div class="card-content">
+          <span class="card-title">ADD NEW PROJECT</span>
+          <p>Give it a name and press enter! :) </p>
+          <form (submit)="projects.push({name: newProjectName.value})">
+            <label for="newProjectName">Name</label><input #newProjectName>
+          </form>
+        </div>
+        <div class="card-action">
+          <!--<button class="waves-effect waves-light btn blue accent-2" (click)="onSelect(project.$key)">EDIT</button>
+          <button class="waves-effect waves-light btn blue accent-2" (click)="deleteProject(project.$key)">DELETE</button>-->
+        </div>
+      </div>
+    </div>
+
     <div class="col s12 m4" *ngFor="let project of projects | async">
       <div class="card">
         <div class="card-content">
           <span class="card-title">{{ project.name | uppercase }}</span>
-          <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little
-            markup to use effectively.</p>
-            <!--<p>{{ project.description }}</p>-->
+          <p>Lorem ipsum dolor sit amet, pri ut augue erant euismod, vim at vocibus delicata principes. Tacimates complectitur et nam. Ex pro vide sententiae reprimique, at pri malis. </p>
+          <!--<p>{{ project.description }}</p>-->
         </div>
         <div class="card-action">
           <button class="waves-effect waves-light btn blue accent-2" (click)="onSelect(project.$key)">EDIT</button>

@@ -24,6 +24,9 @@
           <a materialize="tooltip" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Report Issues" href="https://github.com/cyberbeast/plutonium-emerald/issues"
             target="_blank"><i class="material-icons right">report_problem</i>REPORT ISSUES</a>
         </li>
+        <li>
+          <a href="#debugModal" materialize="leanModal" [materializeParams]="[{dismissible: false}]"><i class="material-icons right">accessible</i>DEBUGGER</a>
+        </li>
         <li *ngIf="!(af.auth | async)">
           <button class="waves-effect waves-light btn modal-trigger blue accent-2" (click)="af.auth.login()">LOG IN</button>
         </li>
@@ -34,10 +37,8 @@
 </div>
 <br>
 
-<button materialize="leanModal" [materializeParams]="[{dismissible: false}]" class="waves-effect waves-light btn modal-trigger blue accent-3"
-  href="#modal1">AUTH Object</button>
 
-<div id="modal1" class="modal">
+<div id="authModal" class="modal">
   <div class="modal-content">
     <pre class="wrapped">
       {{ af.auth | async | json }}
@@ -48,10 +49,7 @@
   </div>
 </div>
 
-<button materialize="leanModal" [materializeParams]="[{dismissible: false}]" class="waves-effect waves-light btn modal-trigger blue accent-3"
-  href="#modal2">PROJECT Object</button>
-
-<div id="modal2" class="modal">
+<div id="projecstModal" class="modal">
   <div class="modal-content">
     <pre class="wrapped">
       {{ projectObject | async | json }}
@@ -62,6 +60,27 @@
   </div>
 </div>
 
-<button (click)="clicky()">CLICKY</button>
+<div id="functionsModal" class="modal">
+  <div class="modal-content">
+    <pre class="wrapped">
+      {{ projectObject | async | json }}
+    </pre>
+  </div>
+  <div class="modal-footer">
+    <button class=" modal-action modal-close waves-effect waves-light btn blue accent-2">Close</button>
+  </div>
+</div>
+
+<div id="debugModal" class="modal">
+  <div class="modal-content">
+    <button materialize="leanModal" [materializeParams]="[{dismissible: false}]" class="waves-effect waves-light btn modal-trigger blue accent-3" href="#authModal">AUTH Object</button>
+    <button materialize="leanModal" [materializeParams]="[{dismissible: false}]" class="waves-effect waves-light btn modal-trigger blue accent-3" href="#projectsModal">PROJECTS Object</button>
+    <button materialize="leanModal" [materializeParams]="[{dismissible: false}]" class="waves-effect waves-light btn modal-trigger blue accent-3" href="#functionsModal">FUNCTIONS Object</button>
+    
+  </div>
+  <div class="modal-footer">
+    <button class=" modal-action modal-close waves-effect waves-light btn blue accent-2">Close</button>
+  </div>
+</div>
 
 <router-outlet></router-outlet>

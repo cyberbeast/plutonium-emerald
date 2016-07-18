@@ -7,7 +7,7 @@ import { AngularFire, FirebaseListObservable } from 'angularfire2';
 export class DebugService {
     // Observable sources
     private _projectListSource = new Subject<FirebaseListObservable<any[]>>();
-    
+
     // Observable streams
     projectListRetreived$ = this._projectListSource.asObservable();
 
@@ -16,5 +16,5 @@ export class DebugService {
         this._projectListSource.next(projects);
         console.log("Received   " + projects);
     }
-    
+
 }
