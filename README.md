@@ -71,16 +71,16 @@ node app.js
 
 ## Screenshots
 <p align="center">
-    <img src="https://docs.google.com/drawings/d/1y0nYXMsW79AZaIsOnI_lOoC48wA7HWMTJOUjywd-Mlc/pub?w=960&h=720">
+    <img src="https://docs.google.com/drawings/d/1y0nYXMsW79AZaIsOnI_lOoC48wA7HWMTJOUjywd-Mlc/pub?w=480&h=360">
 </p>
 <p align="center">
-    <img src="https://docs.google.com/drawings/d/10CIjGS_2k7ikN0ZakfHgqZea70Kv7D1l_eatAMCXA5Q/pub?w=960&h=720">
+    <img src="https://docs.google.com/drawings/d/10CIjGS_2k7ikN0ZakfHgqZea70Kv7D1l_eatAMCXA5Q/pub?w=480&h=360">
 </p>
 <p align="center">
-    <img src="https://docs.google.com/drawings/d/1-Dr7_lePyzfnxhx3lTXRkoIgb0Cu624du4Hlg9XDX9I/pub?w=960&h=720">
+    <img src="https://docs.google.com/drawings/d/1-Dr7_lePyzfnxhx3lTXRkoIgb0Cu624du4Hlg9XDX9I/pub?w=480&h=360">
 </p>
 <p align="center">
-    <img src="https://docs.google.com/drawings/d/1LH0uUf4allVK2-e3gAt4wZd6J_RSabWvUKh0IMKybaI/pub?w=960&h=720">
+    <img src="https://docs.google.com/drawings/d/1LH0uUf4allVK2-e3gAt4wZd6J_RSabWvUKh0IMKybaI/pub?w=480&h=360">
 </p>
 
 ## Contributors
