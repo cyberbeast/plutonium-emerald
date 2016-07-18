@@ -13,7 +13,7 @@
 - [ ] <<ADD MORE>>
 
 ## Version (Changelog)
-* ***0.1.1 (July 18, 2016) ***
+* ***0.1.1 (July 18, 2016)***
     * MASSIVE UI Overhaul. 
         * Due to issues with the official angular2 material components, we've decided to stroll away from it for the time being and invested some coding efforts into making emerald fulfill its UI objectives better.
     * Debug Service and Support. 
