@@ -17,36 +17,56 @@
   </center>-->
 
   <div class="row">
-    <div class="col s12 m4">
-      <div class="card">
-                    <div class="card-image">
-              <img src="https://image.freepik.com/free-vector/abstract-blue-background_1048-1511.jpg" style="height:250px;">
-              <span class="card-title">Card Title</span>
-            </div>
+    <div class="col s12 m12">
+      <div class="card small">
+        <!--<div class="card-image waves-effect waves-block waves-light">
+          <img src="http://www.siwallpaperhd.com/wp-content/uploads/2016/07/low_poly_art_snow_mountain_wallpaper_ultra_hd.jpg">
+          <span class="card-title" style="font-weight:light; font-size:250%;">PROJECTS</span>
+        </div>-->
+        <!--<div class="card-image activator">
+          <img src="https://image.freepik.com/free-vector/abstract-blue-background_1048-1511.jpg">
+        </div>-->
+
         <div class="card-content">
-          <span class="card-title">ADD NEW PROJECT</span>
-          <p>Give it a name and press enter! :) </p>
+          <span class="waves-effect waves-light btn-large blue accent-2 activator">NEW PROJECT</span>
+        </div>
+        <div class="card-reveal">
+          <span class="card-title grey-text text-darken-4">NEW PROJECT INFORMATION<i class="material-icons right">close</i></span>
+          <!--<p>Here is some more information about this product that is only revealed once clicked on.</p>-->
           <form (submit)="projects.push({name: newProjectName.value})">
-            <label for="newProjectName">Name</label><input #newProjectName>
+            <div class="row">
+              <div class="input-field col s4">
+
+                <input placeholder="Name" #newProjectName>
+              </div>
+            </div>
+            <div class="input-field col s4">
+              <!--<div class="row">-->
+              <textarea id="textarea1" class="materialize-textarea" placeholder="Project Description" style="padding-top:0px;"></textarea>
+            </div>
+            <!--</div>-->
           </form>
         </div>
-        <div class="card-action">
-          <!--<button class="waves-effect waves-light btn blue accent-2" (click)="onSelect(project.$key)">EDIT</button>
-          <button class="waves-effect waves-light btn blue accent-2" (click)="deleteProject(project.$key)">DELETE</button>-->
-        </div>
+        <!--<div class="card-action">
+          <button class="waves-effect waves-light btn blue accent-2" (click)="onSelect(project.$key)">EDIT</button>
+          <button class="waves-effect waves-light btn blue accent-2" (click)="deleteProject(project.$key)">DELETE</button>
+        </div>-->
       </div>
     </div>
 
     <div class="col s12 m4" *ngFor="let project of projects | async">
-      <div class="card">
+      <div class="card small">
         <div class="card-content">
           <span class="card-title">{{ project.name | uppercase }}</span>
-          <p>Lorem ipsum dolor sit amet, pri ut augue erant euismod, vim at vocibus delicata principes. Tacimates complectitur et nam. Ex pro vide sententiae reprimique, at pri malis. </p>
           <!--<p>{{ project.description }}</p>-->
         </div>
+        <div class="card-content" style="padding-top:0px;">
+          <p>Lorem ipsum dolor sit amet, pri ut augue erant euismod, vim at vocibus delicata principes. Tacimates complectitur
+            et nam. Ex pro vide sententiae reprimique, at pri malis. </p>
+        </div>
         <div class="card-action">
-          <button class="waves-effect waves-light btn blue accent-2" (click)="onSelect(project.$key)">EDIT</button>
-          <button class="waves-effect waves-light btn blue accent-2" (click)="deleteProject(project.$key)">DELETE</button>
+          <button class="waves-effect waves-light btn blue accent-2" (click)="onSelect(project.$key)"><i class="material-icons left">mode_edit</i>EDIT</button>
+          <button class="waves-effect waves-light btn blue accent-2" (click)="deleteProject(project.$key)"><i class="material-icons left">delete</i>DELETE</button>
         </div>
       </div>
     </div>
