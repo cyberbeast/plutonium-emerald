@@ -4,18 +4,29 @@
 </p>
 
 ## Experiment Objectives
-- [x] Conceptualize a minimalistic UI/UX inspired by Google's Material Design. **(ACHIEVED)**
-- [ ] Build a minimal front-end scaffolding in Angular2 to facilitate a robust backend. **(IN PROGRESS)**
-- [ ] Backend API compiler on demand.
+- [x] Conceptualize a minimalistic UI/UX inspired by Google's Material Design. Moved to [angular2-materialize][angular2-materialize] since support for angular2-material has been delayed. **(ACHIEVED)**
+- [x] Build a minimal front-end scaffolding in Angular2 to facilitate a robust backend. **(ACHIEVED)**
+- [ ] Backend API compiler on demand. **(PLANNING)**
 - [x] Firebase integration. Decouple front-end from the server to improve reactivity.**(ACHIEVED! "Drop-the-mic")**
 - [x] Github Authentication. DUH! :P **(ACHIEVED)**
+- [x] Front end subscription based access to real-time data objects. **(ACHIEVED)**
 - [ ] <<ADD MORE>>
 
 ## Version (Changelog)
+* ***0.1.1 (July 18, 2016)***
+    * MASSIVE UI Overhaul. 
+        * Due to issues with the official angular2 material components, we've decided to stroll away from it for the time being and invested some coding efforts into making emerald fulfill its UI objectives better.
+    * Debug Service and Support. 
+        * Now access communication objects in near real-time by subscribing to the live streams exposed as part of the Debug Service. Go "Observables"!
+    * Minor code cleanup.
+    * Typographical Updates.
 * ***0.1.0***
-    * Firebase integration. No local data dependencies. Aww yeah! Two days worth of coding finally paid off.
-    * Formatted Object display in views to display real-time data.
+    * Firebase integration. 
+        * No more local data dependencies. **Aww yeah! Two days worth of coding finally paid off.**
+        * Near real-time synchronization and availability of metadata.
+    * Support for Formatted Object display in views to display communication data.
     * Github Authentication support.
+        * Users need to login via Github to access the app.
 * ***0.0.4***
     * Added a project component view. Clicking the edit button on a project card toggles the respective component view.
     * Added support for Material Design Icons.
@@ -58,6 +69,20 @@ node app.js
 
 > Access http://localhost:3005 via a browser.
 
+## Screenshots
+<p align="center">
+    <img src="https://docs.google.com/drawings/d/1y0nYXMsW79AZaIsOnI_lOoC48wA7HWMTJOUjywd-Mlc/pub?w=480&h=360">
+</p>
+<p align="center">
+    <img src="https://docs.google.com/drawings/d/10CIjGS_2k7ikN0ZakfHgqZea70Kv7D1l_eatAMCXA5Q/pub?w=480&h=360">
+</p>
+<p align="center">
+    <img src="https://docs.google.com/drawings/d/1-Dr7_lePyzfnxhx3lTXRkoIgb0Cu624du4Hlg9XDX9I/pub?w=480&h=360">
+</p>
+<p align="center">
+    <img src="https://docs.google.com/drawings/d/1LH0uUf4allVK2-e3gAt4wZd6J_RSabWvUKh0IMKybaI/pub?w=480&h=360">
+</p>
+
 ## Contributors
 > [pinkHelium][pinkHelium_Members]
 > [cyberbeast][cyberbeast]
@@ -71,3 +96,4 @@ node app.js
 [cyberbeast]: https://github.com/cyberbeast
 [seel]: https://github.com/abinavseelan
 [diti]: https://github.com/rheaditi
+[angular2-materialize]: https://www.npmjs.com/package/angular2-materialize
