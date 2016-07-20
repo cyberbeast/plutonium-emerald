@@ -1,5 +1,14 @@
 // ANGULAR2 CORE IMPORTS BEGIN>>>>>>>>>>>>>
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { 
+    Component,
+    OnDestroy,
+    OnInit,
+    trigger,
+    state,
+    style,
+    animate,
+    transition
+ } from '@angular/core';
 import { ROUTER_DIRECTIVES } from '@angular/router';
 // ANGULAR2 CORE IMPORTS END>>>>>>>>>>>>>>>
 

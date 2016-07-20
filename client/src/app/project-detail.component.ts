@@ -1,5 +1,16 @@
 // ANGULAR2 CORE IMPORTS BEGIN>>>>>>>>>>>>>
-import { Component, Input, OnInit, OnDestroy} from '@angular/core';
+import {
+    Component,
+    OnInit,
+    OnDestroy,
+    trigger,
+    state,
+    style,
+    animate,
+    transition,
+    keyframes,
+    group
+} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 // ANGULAR2 CORE IMPORTS END>>>>>>>>>>>>>>>
 
@@ -29,27 +40,46 @@ import {MaterializeDirective} from "angular2-materialize";
     moduleId: module.id,
     selector: 'project-detail',
     templateUrl: 'project-detail.component.html',
-    styleUrls:['project-detail.component.css'],
+    styleUrls: ['project-detail.component.css'],
     directives: [
         MdIcon,
         MaterializeDirective
     ],
-    providers:[ 
+    providers: [
         MdIconRegistry
+    ],
+    animations: [
+        trigger('flyInOut', [
+            state('in', style({ transform: 'translateY(0)' })),
+            transition('void => *', [
+                animate(300, keyframes([
+                    style({ opacity: 0, transform: 'translateY(-100%)', offset: 0 }),
+                    style({ opacity: 1, transform: 'translateY(15px)', offset: 0.3 }),
+                    style({ opacity: 1, transform: 'translateY(0)', offset: 1.0 })
+                ]))
+            ]),
+            transition('* => void', [
+                animate(300, keyframes([
+                    style({ opacity: 1, transform: 'translateY(0)', offset: 0 }),
+                    style({ opacity: 1, transform: 'translateY(-15px)', offset: 0.7 }),
+                    style({ opacity: 0, transform: 'translateY(100%)', offset: 1.0 })
+                ]))
+            ])
+        ])
     ]
 })
 
 export class ProjectDetailComponent implements OnInit, OnDestroy {
     sub: any;
     project_functions: Observable<any>;
-    
+
 
     constructor(
         private _route: ActivatedRoute,
         private _af: AngularFire,
         public af: AngularFire,
         private debugService: DebugService
-    ) {}
+    ) { }
 
     ngOnInit() {
         this.sub = this._route.params
@@ -58,11 +88,11 @@ export class ProjectDetailComponent implements OnInit, OnDestroy {
             })
             .subscribe(key => {
                 this.project_functions = this._af.database.list(`functions`)
-                .map(items => {
-                    const filtered = items.filter(item => item.pkey === key);
-                    return filtered;
-                });
-                
+                    .map(items => {
+                        const filtered = items.filter(item => item.pkey === key);
+                        return filtered;
+                    });
+
             });
         this.debugService.announceProjectFunctionsList(this.project_functions);
 
