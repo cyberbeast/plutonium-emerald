@@ -10,9 +10,21 @@
 - [x] Firebase integration. Decouple front-end from the server to improve reactivity.**(ACHIEVED! "Drop-the-mic")**
 - [x] Github Authentication. DUH! :P **(ACHIEVED)**
 - [x] Front end subscription based access to real-time data objects. **(ACHIEVED)**
+- [x] UI Animations **(ACHIEVED)**
+- [ ] Ace editor powered firepad integration for real-time in-browser code editing **(IN PROGRESS)**
 - [ ] <<ADD MORE>>
 
 ## Version (Changelog)
+* ***0.1.2 (July 20, 2016)***
+    * UI Improvements. 
+        * Incorporated suggestions by [diti][diti] and [seel][seel].
+            * Add new project card spans the entire row.
+            * Card alignment improvements.
+        * Implemented a breadcrumbs bar.
+            * This shows the state of the current view and also gives access to previous views according to the view-flow (Dashboard -> Projects -> Functions).
+    * Navigation Service an Support
+        * Added more observable data streams for understanding and implementing view transitions. Data streams exposed as a service.
+    * Titlecase Pipe [implementation][apkostka-angular2TitleCase]. (Credits: [apkostka][apkostca])
 * ***0.1.1 (July 18, 2016)***
     * MASSIVE UI Overhaul. 
         * Due to issues with the official angular2 material components, we've decided to stroll away from it for the time being and invested some coding efforts into making emerald fulfill its UI objectives better.
@@ -97,3 +109,5 @@ node app.js
 [seel]: https://github.com/abinavseelan
 [diti]: https://github.com/rheaditi
 [angular2-materialize]: https://www.npmjs.com/package/angular2-materialize
+[apkostka]: https://gist.github.com/apkostka
+[apkostka-angular2TitleCase]: https://gist.github.com/apkostka/a42b2f23df033872ae406549ab1a1c2e
