@@ -3,11 +3,6 @@
     border-radius: 50%;
     height: 62px;
   }
-.breadcrumb > li + li:before {
-    color: #ccc;
-    content: "/ ";
-    padding: 0 5px;
-}
 </style>
 
 <div class="navbar-fixed">
@@ -42,11 +37,11 @@
 </div>
 <nav style="height: 30px;
     line-height: 30px; position:fixed; z-index:2;" @flyInOut="'in'">
-  <div class="nav-wrapper blue darken-1">
+  <div class="nav-wrapper blue darken-1" style="padding-left:10px;">
     <div class="col s12">
-      <a href="#!" class="breadcrumb" style="font-size:small;">FIRST</a>
-      <a href="#!" class="breadcrumb" style="font-size:small;">SECOND</a>
-      <a href="#!" class="breadcrumb" style="font-size:small;">THIRD</a>
+      <a href="#!" class="breadcrumb" style="font-size:small; font-weight:bolder;">FIRST</a>
+      <a href="#!" class="breadcrumb" style="font-size:small; font-weight:bolder;">SECOND</a>
+      <a href="#!" class="breadcrumb" style="font-size:small; font-weight:bolder;">THIRD</a>
     </div>
   </div>
 </nav>
