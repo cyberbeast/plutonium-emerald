@@ -34,6 +34,7 @@ import 'rxjs/add/operator/map';
 // Firebase IMPORTS END>>>>>>>>>>>>>>>>>>>>
 
 import { DebugService } from './debug.service';
+import { NavigationService } from './navigation.service';
 
 @Component({
   moduleId: module.id,
@@ -69,6 +70,7 @@ import { DebugService } from './debug.service';
 })
 
 export class ProjectsComponent implements OnInit {
+  title = "projects";
   projects: Observable<any[]>; //projects property. DEFINED in data-structures.ts. POPULATED by mock-projects.ts.
   selectedProjectName: string; //selectedProject property. USED when user clicks on the edit button of a project card.
 
@@ -90,7 +92,8 @@ export class ProjectsComponent implements OnInit {
     private projectService: ProjectService,
     private router: Router,
     public af: AngularFire,
-    private debugService: DebugService) {
+    private debugService: DebugService,
+    private navigationService: NavigationService) {
 
   }
 
@@ -108,6 +111,7 @@ export class ProjectsComponent implements OnInit {
 
   // ngOnInit() method triggered at the initialization lifecycle hook. PROVIDED by angular2.
   ngOnInit() {
+    this.navigationService.announceViews(this.title);
     this.getProjects();
   }
 

@@ -16,9 +16,9 @@ import "angular2-materialize";
 
 // var firebase_config = require('./config/firebase_config.json');
 
-if (environment.production) {
+// if (environment.production) {
   enableProdMode();
-}
+// }
 
 bootstrap(AppComponent, [
     appRouterProviders,

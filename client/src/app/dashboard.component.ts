@@ -1,5 +1,8 @@
 // ANGULAR2 CORE IMPORTS BEGIN>>>>>>>>>>>>>
-import { Component } from '@angular/core';
+import { 
+    Component,
+    OnInit
+ } from '@angular/core';
 import { Router } from '@angular/router';
 // ANGULAR2 CORE IMPORTS END>>>>>>>>>>>>>>>
 
@@ -12,6 +15,7 @@ import { MD_TOOLBAR_DIRECTIVES } from '@angular2-material/toolbar';
 // UI IMPORTS END>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 import { AngularFire } from 'angularfire2';
+import { NavigationService } from './navigation.service';
 
 @Component({
     moduleId: module.id,
@@ -29,14 +33,21 @@ import { AngularFire } from 'angularfire2';
     ]
 })
 
-export class DashboardComponent {
+export class DashboardComponent implements OnInit{
+    title="dashboard";
+
     constructor(
         private router: Router,
-        public af: AngularFire
+        public af: AngularFire,
+        private navigationService: NavigationService
     ){}
 
     gotoProjectsView(){
         this.router.navigate(['/projects']);
                 
+    }
+
+    ngOnInit(){
+        this.navigationService.announceViews(this.title);
     }
 }

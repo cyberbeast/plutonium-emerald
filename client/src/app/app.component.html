@@ -37,11 +37,9 @@
 </div>
 <nav style="height: 30px;
     line-height: 30px; position:fixed; z-index:2;" @flyInOut="'in'">
-  <div class="nav-wrapper blue darken-1" style="padding-left:10px;">
+  <div class="nav-wrapper blue" style="padding-left:10px;">
     <div class="col s12">
-      <a href="#!" class="breadcrumb" style="font-size:small; font-weight:bolder;">FIRST</a>
-      <a href="#!" class="breadcrumb" style="font-size:small; font-weight:bolder;">SECOND</a>
-      <a href="#!" class="breadcrumb" style="font-size:small; font-weight:bolder;">THIRD</a>
+      <a *ngFor="let crumb of navHistory" (click)="gotoView(crumb)"  class="breadcrumb" style="font-size:large; font-weight:light;" @navHistoryFlyInOut="'in'">{{ crumb | uppercase }}</a>
     </div>
   </div>
 </nav>

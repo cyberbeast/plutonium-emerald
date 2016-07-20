@@ -25,6 +25,7 @@ import { MdIcon, MdIconRegistry } from '@angular2-material/icon';
 // DEPENDENCY IMPORTS BEGIN>>>>>>>>>>>>>>>>
 import { Project, Project_Functions } from './data-structures';
 import { DebugService } from './debug.service';
+import { NavigationService } from './navigation.service';
 // DEPENDENCY IMPORTS END>>>>>>>>>>>>>>>>>>
 
 import { Observable } from 'rxjs';
@@ -72,13 +73,15 @@ import {MaterializeDirective} from "angular2-materialize";
 export class ProjectDetailComponent implements OnInit, OnDestroy {
     sub: any;
     project_functions: Observable<any>;
+    title = "functions";
 
 
     constructor(
         private _route: ActivatedRoute,
         private _af: AngularFire,
         public af: AngularFire,
-        private debugService: DebugService
+        private debugService: DebugService,
+        private navigationService: NavigationService
     ) { }
 
     ngOnInit() {
@@ -95,6 +98,7 @@ export class ProjectDetailComponent implements OnInit, OnDestroy {
 
             });
         this.debugService.announceProjectFunctionsList(this.project_functions);
+        this.navigationService.announceViews(this.title);
 
     }
     ngOnDestroy() {
