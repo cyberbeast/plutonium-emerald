@@ -3,6 +3,11 @@
     border-radius: 50%;
     height: 62px;
   }
+.breadcrumb > li + li:before {
+    color: #ccc;
+    content: "/ ";
+    padding: 0 5px;
+}
 </style>
 
 <div class="navbar-fixed">
@@ -35,8 +40,18 @@
     </div>
   </nav>
 </div>
+<nav style="height: 30px;
+    line-height: 30px; position:fixed; z-index:2;" @flyInOut="'in'">
+  <div class="nav-wrapper blue darken-1">
+    <div class="col s12">
+      <a href="#!" class="breadcrumb" style="font-size:small;">FIRST</a>
+      <a href="#!" class="breadcrumb" style="font-size:small;">SECOND</a>
+      <a href="#!" class="breadcrumb" style="font-size:small;">THIRD</a>
+    </div>
+  </div>
+</nav>
 <br>
-
+<br>
 
 <div id="authModal" class="modal">
   <div class="modal-content">

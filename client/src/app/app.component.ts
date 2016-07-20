@@ -7,7 +7,8 @@ import {
     state,
     style,
     animate,
-    transition
+    transition,
+    keyframes
  } from '@angular/core';
 import { ROUTER_DIRECTIVES } from '@angular/router';
 // ANGULAR2 CORE IMPORTS END>>>>>>>>>>>>>>>
@@ -50,7 +51,26 @@ import { Observable, Subscription } from 'rxjs';
         ProjectService,
         MdIconRegistry,
         DebugService
-    ]
+    ],
+    animations: [
+    trigger('flyInOut', [
+      state('in', style({ transform: 'translateY(0)' })),
+      transition('void => *', [
+        animate(300, keyframes([
+          style({ opacity: 0, transform: 'translateY(-100%)', offset: 0 }),
+          style({ opacity: 1, transform: 'translateY(15px)', offset: 0.3 }),
+          style({ opacity: 1, transform: 'translateY(0)', offset: 1.0 })
+        ]))
+      ]),
+      transition('* => void', [
+        animate(300, keyframes([
+          style({ opacity: 1, transform: 'translateY(0)', offset: 0 }),
+          style({ opacity: 1, transform: 'translateY(-15px)', offset: 0.7 }),
+          style({ opacity: 0, transform: 'translateY(100%)', offset: 1.0 })
+        ]))
+      ])
+    ])
+  ]
 })
 
 export class AppComponent implements OnDestroy, OnInit {
