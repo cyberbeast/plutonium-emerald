@@ -19,8 +19,11 @@
     * UI Improvements. 
         * Incorporated suggestions by [diti][diti] and [seel][seel].
             * Add new project card spans the entire row.
-            * Card alignment improvements.
+            * <img src="https://docs.google.com/drawings/d/1LiCjosl8-NZPTER6Vng3j1SNnmDC3Kxogfzx3QsPekk/pub?w=479&h=107">
+            * Card alignment improvements. 
+            * <img src="https://docs.google.com/drawings/d/1VQlq0NZrXVq56ZdE_jWIF07TVZAlWrgVFQ374wxEyIM/pub?w=160&h=157">
         * Implemented a breadcrumbs bar.
+            * <img src="https://docs.google.com/drawings/d/1AqgEUywUfg-QDhFydZ7vWDm0mxWFr1SPSJ0ENUp46J8/pub?w=253&h=50"> 
             * This shows the state of the current view and also gives access to previous views according to the view-flow (Dashboard -> Projects -> Functions).
     * Navigation Service an Support
         * Added more observable data streams for understanding and implementing view transitions. Data streams exposed as a service.
