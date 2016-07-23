@@ -27,7 +27,7 @@
             * This shows the state of the current view and also gives access to previous views according to the view-flow (Dashboard -> Projects -> Functions).
     * Navigation Service an Support
         * Added more observable data streams for understanding and implementing view transitions. Data streams exposed as a service.
-    * Titlecase Pipe [implementation][apkostka-angular2TitleCase]. (Credits: [apkostka][apkostca])
+    * Titlecase Pipe [implementation][apkostka-angular2TitleCase]. (Credits: [apkostka][apkostka])
 * ***0.1.1 (July 18, 2016)***
     * MASSIVE UI Overhaul. 
         * Due to issues with the official angular2 material components, we've decided to stroll away from it for the time being and invested some coding efforts into making emerald fulfill its UI objectives better.
